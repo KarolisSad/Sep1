@@ -15,9 +15,7 @@ public class Time
           "Please enter an hour that is more than 8 and less then 20");
     }
 
-    //if ((hour > 8 && hour < 19 && minute > 0 && minute < 60) || ((hour == 8
-    // && minute >= 20) || (minute < 36 && hour == 19)))
-    if(minute < 60 && minute > 0)
+    if(minute < 60 && minute >= 0)
     {
       if (hour == 8 && minute >= 20)
       {
@@ -48,6 +46,13 @@ public class Time
   {
     return minute;
   }
+
+  public boolean isBefore(Time time2)
+  {
+    return hour < time2.hour || hour == time2.hour && minute < time2.minute
+        || hour == time2.hour && minute == time2.minute;
+  }
+
 
   public Time copy()
   {

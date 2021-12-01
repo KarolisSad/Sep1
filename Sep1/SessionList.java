@@ -10,18 +10,22 @@ public class SessionList
     this.sessionList = new ArrayList<>();
   }
 
-  public void addSession(Session session)
+  public void add(Session session)
   {
+
+    /*
     for (int i = 0; i < sessionList.size(); i++)
-    {
-      if (sessionList.get(i).getRoom().equals(session.getRoom()))
+    {if (sessionList.get(i).getRoom().equals(session.getRoom()))
       {
         if (sessionList.get(i).getStartTime().getTime().getHour() > session.getStartTime().getTime().getHour())
         {
 
         }
       }
+
     }
+
+     */
 
     sessionList.add(session);
   }
