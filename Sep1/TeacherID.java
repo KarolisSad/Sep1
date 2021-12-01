@@ -1,19 +1,37 @@
-public class TeacherID implements viaID
+public class TeacherID
 {
-  private String teacherId;
+  private String teacherID;
 
-  public TeacherID(String teacherId)
+  /**
+   * Constructor for TeacherID
+   *
+   * @param teacherID The teacher ID
+   */
+  public TeacherID(String teacherID)
   {
-    this.teacherId = teacherId;
+    this.teacherID = teacherID;
   }
 
-  @Override public String getIdAsString()
+  /**
+   * Method to return teachers ID copy
+   *
+   * @return copy of teachers ID
+   */
+  public String getIdAsString()
   {
-    return teacherId;
+    return copy().teacherID;
   }
 
-  @Override public viaID Copy()
+  /**
+   * Method to return copy of TeacherID
+   *
+   * @return copy of TeacherID
+   */
+  public TeacherID copy()
   {
-    return this;
+    return new TeacherID(teacherID);
   }
 }
+
+
+

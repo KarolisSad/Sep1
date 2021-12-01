@@ -2,37 +2,61 @@ import java.util.ArrayList;
 
 public class StudentList
 {
-  private ArrayList<Student> studentList;
 
+  private ArrayList<Student> students;
+
+  /**
+   * Constructor for StudentList
+   */
   public StudentList()
   {
-    this.studentList = new ArrayList<>();
+    students = new ArrayList<>();
   }
 
-
-  // CHECK ALL OF THESE - SHOULD PROPBABLY BE ADDED IN ASTAH
-
-
+  /**
+   * Adds Student to the list
+   *
+   * @param student the student
+   */
   public void addStudent(Student student)
   {
-    studentList.add(student);
+    students.add(student);
   }
 
-
-  public void removeStudent(int index)
+  /**
+   * Remove student from list
+   *
+   * @param Id students ID
+   */
+  public void removeStudentByID(String Id)
   {
-    studentList.remove(index);
+    for (int i = 0; i < students.size(); i++)
+    {
+      if (students.get(i).getId().equals(Id))
+      {
+        students.remove(i);
+        break;
+      }
+    }
   }
 
-  public int size()
-  {
-    return studentList.size();
-  }
-
+  /**
+   * Method for getting student
+   * @param index the index
+   * @return the student
+   */
   public Student getStudent(int index)
   {
-    return studentList.get(index);
+    return students.get(index);
   }
 
+  /**
+   * Method to get copy of StudentList
+   * @return copy of StudentList
+   */
+  public ArrayList<Student> copy()
+  {
+    return new ArrayList<Student>(students);
+  }
 
 }

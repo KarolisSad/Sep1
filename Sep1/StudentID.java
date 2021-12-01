@@ -1,19 +1,46 @@
-public class StudentID implements viaID
+public class StudentID extends ViaID
 {
-  private int studentId;
 
-  public StudentID(int studentId)
+  private int studentID;
+
+  /**
+   * Constructor for StudentID
+   *
+   * @param studentID the Student ID
+   */
+  public StudentID(int studentID)
   {
-    this.studentId = studentId;
+    if (studentID != 0)
+    {
+      this.studentID = studentID;
+    }
+    else
+    {
+      throw new IllegalArgumentException("Student ID can't be 0");
+    }
   }
 
-  @Override public String getIdAsString()
+  /**
+   * Method to return students ID copy
+   *
+   * @return the copy of ID in string format
+   */
+  public String getIdAsString()
   {
-    return "" + studentId;
+    return String.valueOf(copy().studentID);
   }
 
-  @Override public viaID Copy()
+  /**
+   * Method to return the copy of StudentID
+   *
+   * @return copy of StudentID
+   */
+  public StudentID copy()
   {
-    return this;
+    return new StudentID(studentID);
+
   }
+
+
+  // Illegal if ID is String
 }

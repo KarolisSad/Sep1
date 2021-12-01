@@ -7,7 +7,7 @@ public class Student
    * Constructor for Student
    *
    * @param name      the name
-   * @param studentID the student ID
+   * @param studentID the student IDs
    */
   public Student(String name, StudentID studentID)
   {
