@@ -30,11 +30,13 @@ public class Session
 
     this.startTime = startTime.copy();
 
-    if (course.getStudentListSize() <= room.getCapacity() && !(room.isBooked()))
+    if (course.getStudentList.size() <= room.getCapacity() && !(room.isBooked()))
     {
       this.room = room.copy();
 
       /*
+
+
       this.room.isBooked(startTime, endTime);
 
        */
@@ -45,6 +47,7 @@ public class Session
       throw new IllegalArgumentException("Room to small to hold students.");
     }
 
+    endTime = new DateTime(startTime.getDate(), new Time(startTime.getTime().getHour() + (length), startTime.getTime().getMinute()));
   }
 
   public Course getCourse()
@@ -60,6 +63,10 @@ public class Session
   public DateTime getStartTime()
   {
     return startTime.copy();
+  }
+  public DateTime getEndTime()
+  {
+    return endTime;
   }
 
   public Room getRoom()
@@ -97,4 +104,5 @@ public class Session
     return "Course: " + course + ", Date: " + startTime.getDate() + ", Time: "
         + startTime.getTime() + ", Room: " + room;
   }
+
 }

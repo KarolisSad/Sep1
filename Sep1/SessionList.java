@@ -12,36 +12,42 @@ public class SessionList
 
   public void add(Session session)
   {
-
-    /*
-    for (int i = 0; i < sessionList.size(); i++)
-    {if (sessionList.get(i).getRoom().equals(session.getRoom()))
-      {
-        if (sessionList.get(i).getStartTime().getTime().getHour() > session.getStartTime().getTime().getHour())
-        {
-
-        }
-      }
-
+    if (sessionList.isEmpty())
+    {
+      sessionList.add(session);
     }
 
-     */
+    else
+    {
+      for (int i = 0; i < sessionList.size(); i++)
+      {
 
-    sessionList.add(session);
+        if (session.getRoom().equals(sessionList.get(i)
+            .getRoom())) // IF SESSION IS IN SAME ROOM AS SessionList[i]
+        {
+          if (session.getStartTime().equals(sessionList.get(i)
+              .getStartTime())) // If start time is identical to other session.
+          {
+            throw new IllegalArgumentException("Room already booked");
+          }
+          else if (session.getStartTime()
+              .isBefore(sessionList.get(i).getEndTime())) // If start time is while another class is still in session in room
+          {
+            throw new IllegalArgumentException("Room already booked");
+          }
+
+          else
+          {
+            sessionList.add(session);
+          }
+        }
+      }
+    }
   }
 
   // Should maybe be changed in Astah?? Se examples below:
   public void removeSession(Session session)
   {
-
-    /*
-    Could instead be something like:
-
-    removeSession(DateTime dateTime, String course)
-    {
-    sessionList.remove(getSessionByDateTimeAndCourse(dateTime, course));
-    }
-     */
     sessionList.remove(session);
   }
 
