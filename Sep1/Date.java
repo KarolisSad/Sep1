@@ -86,4 +86,12 @@ public class Date
     /*format "%02d:%02d:%02d" means that each value takes 2 "spaces"
       (0 is inserted first if number is only one cipher, AND separates numbers with colon) */
   }
+
+  public boolean isBefore(Date date)
+  {
+    return (this.year < date.year || (this.year == date.year &&
+        (this.month < date.month || (this.month == date.month &&
+            (this.day < date.day)))));
+  }
+
 }
