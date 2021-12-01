@@ -34,8 +34,10 @@ public class Session
     {
       this.room = room.copy;
 
-      // This definately shouldn't work...
+      /* This definately shouldn't work...
       this.room.isBooked(dateTime, dateTime + (length * 45));
+
+       */
     }
     else
     {
