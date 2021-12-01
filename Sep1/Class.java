@@ -2,7 +2,7 @@ public class Class
 {
   private char name;
   private int semester;
-  StudentList studentList;
+  private StudentList studentList;
 
   public Class(char name, int semester, StudentList studentList)
   {
@@ -40,7 +40,7 @@ public class Class
   {
     for (int i = 0; i < studentList.size(); i++)
     {
-      if (studentList.getStudent(i).getStudentID.equals(studentID))
+      if (studentList.getStudent(i).getId().equals(studentID))
       {
         studentList.removeStudent(i);
         break;

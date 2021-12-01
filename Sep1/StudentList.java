@@ -24,7 +24,7 @@ public class StudentList
   }
 
   /**
-   * Remove student from list
+   * Remove student from list by ID
    *
    * @param Id students ID
    */
@@ -38,6 +38,15 @@ public class StudentList
         break;
       }
     }
+  }
+
+  /**
+   * Method to remove student by index number
+   * @param index index
+   */
+  public void removeStudent(int index)
+  {
+    students.remove(index);
   }
 
   /**
@@ -58,5 +67,17 @@ public class StudentList
   {
     return new ArrayList<Student>(students);
   }
+
+  /**
+   * Method to return studentList size
+   * @return StudentList size
+   */
+  public int size()
+  {
+    return students.size();
+  }
+
+
+
 
 }
