@@ -9,12 +9,13 @@ public class Course
   private TeacherList teacherList;
   private StudentList studentList;
 
-  public Course (String name, int ECTS, Class class, TeacherList teacherList, StudentList studentList)
+  public Course (String name, int ECTS, Class class, Teacher teacher, StudentList studentList)
   {
     this.name = name;
     this.ECTS = ECTS;
     this.class = class;
-    this.teacherList = teacherList;
+    this.teacherList = new teacherList;
+    teacherList.add(teacher);
     this.studentList = class.getStudentList();
   }
 
@@ -38,14 +39,8 @@ public class Course
     studentList.remove(student);
   }
 
-  public TeacherList getTeacherList()
+  public void addTeacherToCourse (Teacher teacher)
   {
-    return teacherList.copy();
+    teacherList.add(teacher);
   }
-
-  public void addTeacherToCourse ()
-  {
-    teacher.add
-  }
-
 }

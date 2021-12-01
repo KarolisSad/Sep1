@@ -2,19 +2,18 @@ public class Session
 {
   private Course course;
   private int length;
-  private DateTime startTime;
-  private DateTime endTime;
+  private DateTime dateTime;
   private Room room;
 
   /**
    * Constructor for Session
    *
-   * @param course    the course
+   * @param course   the course
    * @param length
-   * @param startTime
+   * @param dateTime
    * @param room
    */
-  public Session(Course course, int length, DateTime startTime, Room room)
+  public Session(Course course, int length, DateTime dateTime, Room room)
   {
     this.course = course;
 
@@ -28,17 +27,15 @@ public class Session
           "Length Error - length should be 2, 3 or 4");
     }
 
-    this.startTime = startTime.copy();
+    this.dateTime = dateTime.copy();
 
-    if (course.getStudentListSize() <= room.getCapacity() && !(room.isBooked()))
+    if (course.getStudentList.size() <= room.getCapacity()
+        && !(room.isBooked()))
     {
-      this.room = room.copy();
+      this.room = room.copy;
 
-      /*
-      this.room.isBooked(startTime, endTime);
-
-       */
-
+      // This definately shouldn't work...
+      this.room.isBooked(dateTime, dateTime + (length * 45));
     }
     else
     {
@@ -57,9 +54,9 @@ public class Session
     return length;
   }
 
-  public DateTime getStartTime()
+  public DateTime getDateTime()
   {
-    return startTime.copy();
+    return dateTime.copy();
   }
 
   public Room getRoom()
@@ -76,7 +73,7 @@ public class Session
   // Change in astah: dateTime -> newDateTime
   public void changeStartTime(DateTime newDateTime)
   {
-    this.startTime = newDateTime.copy();
+    this.dateTime = newDateTime.copy();
   }
 
   // toString + equals might not be needed?
@@ -89,12 +86,12 @@ public class Session
     }
     Session other = (Session) obj;
     return course.equals(other.course) && length == other.length
-        && startTime.equals(other.startTime) && room.equals(other.room);
+        && dateTime.equals(other.dateTime) && room.equals(other.room);
   }
 
   public String toString()
   {
-    return "Course: " + course + ", Date: " + startTime.getDate() + ", Time: "
-        + startTime.getTime() + ", Room: " + room;
+    return "Course: " + course + ", Date: " + dateTime.getDate() + ", Time: "
+        + dateTime.getTime() + ", Room: " + room;
   }
 }
