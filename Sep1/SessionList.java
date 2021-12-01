@@ -12,6 +12,17 @@ public class SessionList
 
   public void addSession(Session session)
   {
+    for (int i = 0; i < sessionList.size(); i++)
+    {
+      if (sessionList.get(i).getRoom().equals(session.getRoom()))
+      {
+        if (sessionList.get(i).getStartTime().getTime().getHour() > session.getStartTime().getTime().getHour())
+        {
+
+        }
+      }
+    }
+
     sessionList.add(session);
   }
 
@@ -53,7 +64,7 @@ public class SessionList
     for (int i = 0; i < sessionList.size(); i++)
     {
       if (sessionList.get(i).getCourse().equals(course) && sessionList.get(i)
-          .getDateTime().equals(dateTime))
+          .getStartTime().equals(dateTime))
         return sessionList.get(i);
     }
 
