@@ -15,10 +15,7 @@ public class Room
 
   public boolean isBookedAtTime(DateTime startDateTime, DateTime endDateTime)
   {
-
-
-    // Should maybe go to RoomBooking class - loop through SessionList and see if room is booked during time in arguments
-
+    //for (int i = 0; i <)
     return true;
   }
 
@@ -41,5 +38,11 @@ public class Room
   {
     Room other = new Room(capacity, roomNumber);
     return other;
+  }
+
+
+  public String toString()
+  {
+    return roomNumber;
   }
 }

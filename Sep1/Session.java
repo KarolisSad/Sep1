@@ -2,18 +2,19 @@ public class Session
 {
   private Course course;
   private int length;
-  private DateTime dateTime;
+  private DateTime startTime;
+  private DateTime endTime;
   private Room room;
 
   /**
    * Constructor for Session
    *
-   * @param course   the course
+   * @param course    the course
    * @param length
-   * @param dateTime
+   * @param startTime
    * @param room
    */
-  public Session(Course course, int length, DateTime dateTime, Room room)
+  public Session(Course course, int length, DateTime startTime, Room room)
   {
     this.course = course;
 
@@ -27,21 +28,18 @@ public class Session
           "Length Error - length should be 2, 3 or 4");
     }
 
-    this.dateTime = dateTime.copy();
+    this.startTime = startTime.copy();
 
-    if (course.getStudentList.size() <= room.getCapacity()
-        && !(room.isBooked()))
+    if (course.getStudentList().size() <= room.getCapacity() && !(room.isBooked()))
     {
-      this.room = room.copy;
-
-      // This definately shouldn't work...
-      this.room.isBooked(dateTime, dateTime + (length * 45));
+      this.room = room.copy();
     }
     else
     {
       throw new IllegalArgumentException("Room to small to hold students.");
     }
 
+    this.endTime = new DateTime(startTime.getDate(), new Time(startTime.getTime().getHour() + length, startTime.getTime().getMinute()));
   }
 
   public Course getCourse()
@@ -54,9 +52,13 @@ public class Session
     return length;
   }
 
-  public DateTime getDateTime()
+  public DateTime getStartTime()
   {
-    return dateTime.copy();
+    return startTime.copy();
+  }
+  public DateTime getEndTime()
+  {
+    return endTime;
   }
 
   public Room getRoom()
@@ -73,8 +75,9 @@ public class Session
   // Change in astah: dateTime -> newDateTime
   public void changeStartTime(DateTime newDateTime)
   {
-    this.dateTime = newDateTime.copy();
+    this.startTime = newDateTime.copy();
   }
+
 
   // toString + equals might not be needed?
 
@@ -86,12 +89,13 @@ public class Session
     }
     Session other = (Session) obj;
     return course.equals(other.course) && length == other.length
-        && dateTime.equals(other.dateTime) && room.equals(other.room);
+        && startTime.equals(other.startTime) && room.equals(other.room);
   }
 
   public String toString()
   {
-    return "Course: " + course + ", Date: " + dateTime.getDate() + ", Time: "
-        + dateTime.getTime() + ", Room: " + room;
+    return "Course: " + course.getName() + ", Date: " + startTime.getDate() + ", Starting: "
+        + startTime.getTime() + ", Ending: " + endTime.getTime() + ", Room: " + room;
   }
+
 }

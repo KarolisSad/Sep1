@@ -1,37 +1,29 @@
-public class TeacherID
+
+public class TeacherID implements ViaID //implements an interface
 {
   private String teacherID;
 
-  /**
-   * Constructor for TeacherID
-   *
-   * @param teacherID The teacher ID
-   */
   public TeacherID(String teacherID)
   {
-    this.teacherID = teacherID;
+    if (teacherID.equals(""))
+    {
+      throw new IllegalArgumentException("Teacher ID should not be empty.");
+    }
+    else
+    {
+      this.teacherID = teacherID;
+    }
   }
 
-  /**
-   * Method to return teachers ID copy
-   *
-   * @return copy of teachers ID
-   */
-  public String getIdAsString()
-  {
-    return copy().teacherID;
-  }
-
-  /**
-   * Method to return copy of TeacherID
-   *
-   * @return copy of TeacherID
-   */
   public TeacherID copy()
   {
-    return new TeacherID(teacherID);
+    TeacherID other = new TeacherID(teacherID);
+    return other;
+  }
+
+  public String getIdAsString() //id is already a string
+  {
+    return teacherID;
   }
 }
-
-
 
