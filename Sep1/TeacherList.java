@@ -33,6 +33,7 @@ public class TeacherList
     teacherList.remove(teacher);
   }
 
+
   public void removeTeacherByID(String teacherID)
   {
     for (int i = 0; i < teacherList.size(); i++)
@@ -64,6 +65,7 @@ public class TeacherList
     }
     return other;
   }
+
 
   /*
       MISSING ADD TEACHER BY ID - NOT POSSIBLE HERE??

@@ -75,7 +75,7 @@ public class Course
     }
   }
 
-  public StudentList getStudentList()
+  public StudentList getCourseStudentList()
   {
     return courseStudentList.copy();
   }
@@ -106,6 +106,11 @@ public class Course
   public String getName()
   {
     return name;
+  }
+
+  public StudentList getClassStudentList()
+  {
+    return aClass.cStudentList;
   }
 
   public void addTeacherToCourse(Teacher teacher)

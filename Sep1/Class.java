@@ -65,8 +65,6 @@ public class Class
       }
       else throw new IllegalArgumentException("Student not found");
     }
-
-    ;
   }
 
   /* Might be nice to have

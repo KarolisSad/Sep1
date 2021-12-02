@@ -5,6 +5,7 @@ public class Session
   private DateTime startTime;
   private DateTime endTime;
   private Room room;
+  private RoomList roomList;
 
   /**
    * Constructor for Session
@@ -14,7 +15,7 @@ public class Session
    * @param startTime
    * @param room
    */
-  public Session(Course course, int length, DateTime startTime, Room room)
+  public Session(Course course, int length, DateTime startTime, Room room, RoomList roomList)
   {
     this.course = course;
 
@@ -30,7 +31,7 @@ public class Session
 
     this.startTime = startTime.copy();
 
-    if (course.getStudentList().size() <= room.getCapacity() && !(room.isBooked()))
+    if (course.getCourseStudentList().size() <= room.getCapacity())
     {
       this.room = room.copy();
     }
@@ -66,20 +67,21 @@ public class Session
     return room.copy();
   }
 
-  // Change in astah: room -> newRoom
+  public RoomList getRoomList()
+  {
+    return roomList;
+  }
+
   public void changeRoom(Room newRoom)
   {
     this.room = newRoom.copy();
   }
 
-  // Change in astah: dateTime -> newDateTime
   public void changeStartTime(DateTime newDateTime)
   {
     this.startTime = newDateTime.copy();
   }
 
-
-  // toString + equals might not be needed?
 
   public boolean equals(Object obj)
   {
