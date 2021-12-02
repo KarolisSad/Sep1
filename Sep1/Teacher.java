@@ -36,10 +36,21 @@ public class Teacher
   }
 
 
+  // EQUALS
+
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof Teacher))
+    {return false;}
+    Teacher other = (Teacher) obj;
+    return name.equals(other.name) && id.equals(other.id);
+  }
+
+
   // FOR TESTING
 
   public String toString()
   {
-    return "Teachers name " + name + " ID " + id.getIdAsString();
+    return "Name: " + name + ", Teacher ID: " + id.getIdAsString();
   }
 }

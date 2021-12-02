@@ -2,61 +2,84 @@ import java.util.ArrayList;
 
 public class StudentList
 {
+  private ArrayList<Student> studentList;
 
-  private ArrayList<Student> students;
-
-  /**
-   * Constructor for StudentList
-   */
   public StudentList()
   {
-    students = new ArrayList<>();
+    this.studentList = new ArrayList<>();
   }
 
-  /**
-   * Adds Student to the list
-   *
-   * @param student the student
-   */
   public void addStudent(Student student)
   {
-    students.add(student);
+    if (studentList.isEmpty())
+    {
+      studentList.add(student);
+    }
+    else
+    {
+      if (studentList.contains(student))
+      {
+        throw new IllegalArgumentException("Student already in system.");
+      }
+      else
+      {
+        studentList.add(student);
+      }
+    }
   }
 
-  /**
-   * Remove student from list
-   *
-   * @param Id students ID
-   */
-  public void removeStudentByID(String Id)
+  public void removeStudent(Student student)
   {
-    for (int i = 0; i < students.size(); i++)
+    studentList.remove(student);
+  }
+
+  public void removeStudentByIndex(int index)
+  {
+    studentList.remove(index);
+  }
+
+  public void removeStudentByID(String studentID)
+  {
+    for (int i = 0; i < studentList.size(); i++)
     {
-      if (students.get(i).getId().equals(Id))
+      if (studentList.get(i).getStudentId().equals(studentID))
       {
-        students.remove(i);
+        studentList.remove(i);
         break;
       }
     }
   }
 
-  /**
-   * Method for getting student
-   * @param index the index
-   * @return the student
-   */
+  public int size()
+  {
+    return studentList.size();
+  }
+
   public Student getStudent(int index)
   {
-    return students.get(index);
+    return studentList.get(index);
   }
 
-  /**
-   * Method to get copy of StudentList
-   * @return copy of StudentList
-   */
-  public ArrayList<Student> copy()
+  public StudentList copy()
   {
-    return new ArrayList<Student>(students);
+    StudentList other = new StudentList();
+    for (int i = 0; i < studentList.size(); i++)
+    {
+      other.addStudent(studentList.get(i));
+    }
+    return other;
   }
 
+  // TESTING
+
+  public String toString()
+  {
+    String s = "Students in list:\n";
+    for (int i = 0; i < studentList.size(); i++)
+    {
+      s += studentList.get(i) + "\n";
+    }
+    return s;
+  }
 }
+

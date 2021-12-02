@@ -1,26 +1,38 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RoomList
 {
-  private ArrayList<Room> rooms;
+  private ArrayList<Room> roomList;
+
+  public RoomList()
+  {
+    this.roomList = new ArrayList<>();
+  }
 
   public void addRoom(Room room)
   {
-    rooms.add(room);
+    if (roomList.contains(room))
+    {
+      throw new IllegalArgumentException("Already added: " + room);
+    }
+    else
+    {
+      roomList.add(room);
+    }
   }
 
-  public ArrayList<Room> getNotBookedRooms()
+  public RoomList getAvailableRooms(DateTime startTime, DateTime endTime)
   {
-    ArrayList<Room> returnRoom = new ArrayList<>();
-    for (int i = 0 ; i< rooms.size(); i ++)
+    RoomList notBookedRooms = new RoomList();
+
+    for (int i = 0; i < roomList.size(); i++)
     {
-      if (!rooms.get(i).isBooked())
+      if (!(roomList.get(i).isBookedAtTime(startTime, endTime)))
       {
-        returnRoom.add(rooms.get(i));
+        notBookedRooms.addRoom(roomList.get(i));
       }
     }
-    return returnRoom;
+    return notBookedRooms;
   }
-
 }
+

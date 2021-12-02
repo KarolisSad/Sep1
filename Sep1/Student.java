@@ -1,47 +1,56 @@
 public class Student
 {
   private String name;
-  private StudentID id;
+  private StudentID studentID;
+  private char className;
+  private int semester;
 
-  /**
-   * Constructor for Student
-   *
-   * @param name      the name
-   * @param studentID the student IDs
-   */
-  public Student(String name, StudentID studentID)
+  public Student(String name, StudentID studentID, char className, int semester)
   {
-
-    if (name == null)
-    {
-      throw new IllegalArgumentException("Name field can't be empty.");
-    }
+    if (name.equals(""))
+    {throw new IllegalArgumentException("Name should not be empty.");}
     else {this.name = name;}
-
     if (studentID == null)
     {
-      throw new IllegalArgumentException("Student must have ID");
+      throw new NullPointerException("Student ID should not be null");
     }
-    else {this.id = studentID.copy();}
+    else {this.studentID = studentID;}
+    this.className = className;
 
-
+    switch (semester)
+    {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7: this.semester = semester; break;
+      default: throw new IllegalArgumentException("Semester should be an integer between 1-7.");
+    }
   }
 
-  /**
-   * Getter for ID
-   * @return Students ID
-   */
-  public String getId()
+  public String getStudentId()
   {
-    return id.getIdAsString();
+    return studentID.getIdAsString();
+  }
+  public char getClassName()
+  {
+    return className;
+  }
+  public int getSemester()
+  {
+    return semester;
   }
 
 
-  // FOR TESTING
+
+  // TESTING
 
   public String toString()
   {
-    return "Students name: " + name + " ID: " + id.getIdAsString();
+    return "Name: " + name + ", StudentID: " + studentID.getIdAsString() + ", Class: " + className + ", Semester: " + semester;
   }
+
 
 }

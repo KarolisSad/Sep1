@@ -1,19 +1,22 @@
 public class Class
 {
-  private char name;
+  private char className;
   private int semester;
-  private StudentList studentList;
+  StudentList cStudentList;
+  StudentList allStudents;
 
-  public Class(char name, int semester, StudentList studentList)
+  public Class(char className, int semester, StudentList allStudents)
   {
-    this.name = name;
+    this.className = className;
     this.semester = semester;
-    this.studentList = new StudentList();
+    this.cStudentList = new StudentList();
+    this.allStudents = allStudents;
+
   }
 
   public String getClassName()
   {
-    return "" + name;
+    return Character.toString(className);
   }
 
   public String getClassSemester()
@@ -23,32 +26,56 @@ public class Class
 
   public StudentList getStudentList()
   {
-    return studentList;
+    return cStudentList.copy();
   }
 
   public int getNumberOfStudents()
   {
-    return studentList.size();
+    return cStudentList.size();
   }
 
   public void addStudentToClass(Student student)
   {
-    studentList.addStudent(student);
+    cStudentList.addStudent(student);
+  }
+
+  /**
+   * Sorts from list of all students, and puts students with the same semester and class-name into the StudentList for this class.
+   *
+   */
+  public void addStudentsToClass()
+  {
+    for (int i = 0; i < allStudents.size(); i++)
+    {
+      if (allStudents.getStudent(i).getClassName() == className && allStudents.getStudent(i).getSemester() == semester)
+      {
+        cStudentList.addStudent(allStudents.getStudent(i));
+      }
+    }
   }
 
   public void removeStudentFromClass(String studentID)
   {
-    for (int i = 0; i < studentList.size(); i++)
+    for (int i = 0; i < cStudentList.size(); i++)
     {
-      if (studentList.getStudent(i).getId().equals(studentID))
+      if (cStudentList.getStudent(i).getStudentId().equals(studentID))
       {
-        studentList.removeStudent(i);
+        cStudentList.removeStudentByIndex(i);
         break;
       }
+      else throw new IllegalArgumentException("Student not found");
     }
 
-    throw new IllegalArgumentException("Student not found");
+    ;
   }
 
+  /* Might be nice to have
+    a toString to crate the real "name" of the class: ex. 1Y
+   */
+  public String toString()
+  {
+    String s = "Class: " + getClassName() + ", Semester: " + getClassSemester() + ", Number of students: " + getNumberOfStudents();
+    return s;
+  }
 
 }

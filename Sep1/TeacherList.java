@@ -2,61 +2,82 @@ import java.util.ArrayList;
 
 public class TeacherList
 {
+  private ArrayList<Teacher> teacherList;
 
-  private ArrayList<Teacher> teachers;
-
-  /**
-   * Constructor for TeacherList
-   */
   public TeacherList()
   {
-    teachers = new ArrayList<>();
+    this.teacherList = new ArrayList<>();
   }
 
-  /**
-   * Method adds given teacher
-   *
-   * @param teacher the teacher
-   */
   public void addTeacher(Teacher teacher)
   {
-    teachers.add(teacher);
+    if (teacherList.isEmpty())
+    {
+      teacherList.add(teacher);
+    }
+    else
+    {
+      if (teacherList.contains(teacher))
+      {
+        throw new IllegalArgumentException("Teacher already in system.");
+      }
+      else
+      {
+        teacherList.add(teacher);
+      }
+    }
   }
 
-  /**
-   * Method removes given teacher
-   *
-   * @param id teachers id
-   */
-  public void removeTeacherById(String id)
+  public void removeTeacher(Teacher teacher)
   {
-    for (int i = 0; i < teachers.size(); i++)
+    teacherList.remove(teacher);
+  }
+
+  public void removeTeacherByID(String teacherID)
+  {
+    for (int i = 0; i < teacherList.size(); i++)
     {
-      if (teachers.get(i).getID().equals(id))
+      if (teacherList.get(i).getID().equals(teacherID))
       {
-        teachers.remove(i);
+        teacherList.remove(i);
         break;
       }
     }
   }
 
-  /**
-   * Method to get teacher object
-   * @param index the index
-   * @return teacher at given index
-   */
+  public int size()
+  {
+    return teacherList.size();
+  }
+
   public Teacher getTeacher(int index)
   {
-    return teachers.get(index);
+    return teacherList.get(index);
   }
 
-  /**
-   * Method to get copy of TeacherList
-   * @return copy of TeacherList
-   */
-  public ArrayList<Teacher> copy()
+  public TeacherList copy()
   {
-    return new ArrayList<Teacher>(teachers);
+    TeacherList other = new TeacherList();
+    for (int i = 0; i < teacherList.size(); i++)
+    {
+      other.addTeacher(teacherList.get(i));
+    }
+    return other;
   }
 
+  /*
+      MISSING ADD TEACHER BY ID - NOT POSSIBLE HERE??
+   */
+
+  // TESTING
+
+  public String toString()
+  {
+    String s = "Teachers in list:\n";
+    for (int i = 0; i < teacherList.size(); i++)
+    {
+      s += teacherList.get(i) + "\n";
+    }
+    return s;
+  }
 }
