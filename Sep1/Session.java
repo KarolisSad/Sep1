@@ -5,7 +5,7 @@ public class Session
   private DateTime startTime;
   private DateTime endTime;
   private Room room;
-  private RoomList roomList;
+}
 
   /**
    * Constructor for Session
@@ -15,7 +15,8 @@ public class Session
    * @param startTime
    * @param room
    */
-  public Session(Course course, int length, DateTime startTime, Room room, RoomList roomList)
+  /*
+  public Session(Course course, int length, DateTime startTime, Room room)
   {
     this.course = course;
 
@@ -29,8 +30,12 @@ public class Session
           "Length Error - length should be 2, 3 or 4");
     }
 
-    this.startTime = startTime.copy();
+    this.startTime = startTime.copy();}
 
+   */
+
+/*
+    /// MOVE THIS TO SCHEDULEMANAGER
     if (course.getCourseStudentList().size() <= room.getCapacity())
     {
       this.room = room.copy();
@@ -67,11 +72,6 @@ public class Session
     return room.copy();
   }
 
-  public RoomList getRoomList()
-  {
-    return roomList;
-  }
-
   public void changeRoom(Room newRoom)
   {
     this.room = newRoom.copy();
@@ -101,3 +101,5 @@ public class Session
   }
 
 }
+
+ */

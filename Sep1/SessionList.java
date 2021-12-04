@@ -15,12 +15,16 @@ public class SessionList
     {
       sessionList.add(session);
     }
+
+    /*
     else if (isSessionBookable(session))
     {
       sessionList.add(session);
     }
     else
       throw new IllegalArgumentException("Session not added :-(");
+
+     */
   }
 
 
@@ -29,6 +33,8 @@ public class SessionList
     return sessionList.contains(session);
   }
 
+
+  /*
   public boolean checkRoomAvailability(Session session)
   {
     for (int i = 0; i < sessionList.size(); i++)
@@ -60,6 +66,9 @@ public class SessionList
     return true;
   }
 
+   */
+
+  /*
 
   public boolean isSessionBookable(Session session)
   {
@@ -75,6 +84,29 @@ public class SessionList
     else
     return false;
   }
+
+   */
+
+
+  /*
+  public boolean isSessionBookable(Session session)
+  {
+    if (sessionList.isEmpty())
+    {
+      return true;
+    }
+    else if (session.getRoomList().isRoomAvailable(session.getRoom(), session.getStartTime(),
+        session.getEndTime()) && checkStudentAvailability(session))
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+   */
+
+/*
 
   public boolean checkStudentAvailability(Session session)
   {
@@ -146,16 +178,15 @@ public class SessionList
 
   ////////////////////    MISC    \\\\\\\\\\\\\\\\\\\\
 
-/*    Tried to combine both availability methods -
+/*    Tried to combine both availability methods - error in isRoomAvailable
   public boolean isSessionBookable(Session session)
   {
-    if (checkStudentAvailability(session))
-      if (sessionList.isEmpty())
+  if (sessionList.isEmpty())
       {
         return true;
       }
-      else if (session.getRoomList().isRoomAvailable(session.getRoom(), session.getStartTime(),
-          session.getEndTime()))
+   else if (session.getRoomList().isRoomAvailable(session.getRoom(), session.getStartTime(),
+          session.getEndTime()) && checkStudentAvailability(session))
       {
         return true;
       }

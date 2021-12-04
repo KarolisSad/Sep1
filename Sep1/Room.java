@@ -29,6 +29,6 @@ public class Room
 
   public String toString()
   {
-    return roomNumber;
+    return "Room Number: " + roomNumber + ", Capacity: " + capacity;
   }
 }

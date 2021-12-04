@@ -12,7 +12,7 @@ public class RoomBooking
     this.allSessions = allSessions;
   }
 
-  public RoomList getAvailableRooms()
+ /* public RoomList getAvailableRooms()
   {
     RoomList availableRooms = new RoomList(allSessions);
     if (allSessions.numberOfSessions() == 0)

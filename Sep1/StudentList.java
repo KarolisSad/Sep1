@@ -30,7 +30,14 @@ public class StudentList
 
   public void removeStudent(Student student)
   {
-    studentList.remove(student);
+    if (studentList.contains(student))
+    {
+      studentList.remove(student);
+    }
+    else
+    {
+      throw new IllegalArgumentException("Student not in selected list: ");
+    }
   }
 
   public void removeStudentByIndex(int index)
@@ -48,6 +55,7 @@ public class StudentList
         break;
       }
     }
+     // throw new IllegalArgumentException("Student not found");
   }
 
   public int size()
@@ -68,6 +76,11 @@ public class StudentList
       other.addStudent(studentList.get(i));
     }
     return other;
+  }
+
+  public boolean contains(Student student)
+  {
+    return studentList.contains(student);
   }
 
   // TESTING
