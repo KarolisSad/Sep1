@@ -1,51 +1,114 @@
-import java.security.PublicKey;
-import java.util.ArrayList;
-
 public class Course
 {
-  private String name;
-  private int ECTS;
-  private Class class;
-  private TeacherList teacherList;
-  private StudentList studentList;
+  private String courseName;
+  private int ectsPoints;
+  private TeacherList courseTeacherList;
+  private StudentList courseStudentList;
 
-  public Course (String name, int ECTS, Class class, TeacherList teacherList, StudentList studentList)
+  public Course(String courseName, int ectsPoints, Class mainClass,
+      Teacher teacher)
   {
-    this.name = name;
-    this.ECTS = ECTS;
-    this.class = class;
-    this.teacherList = teacherList;
-    this.studentList = class.getStudentList();
+    if (ectsPoints == 5 || ectsPoints == 10)
+    {
+      this.ectsPoints = ectsPoints;
+    }
+    else
+    {
+      throw new IllegalArgumentException("ECTS points should be 5 or 10");
+    }
+
+    if (mainClass == null)
+    {
+      throw new NullPointerException("ERROR CLASS");
+    }
+
+    if (courseName.equals(""))
+    {
+      throw new IllegalArgumentException("Course Name should not be empty.");
+    }
+    else
+    {
+      this.courseName = courseName + mainClass.getClassID();
+    }
+
+    this.courseTeacherList = new TeacherList();
+    this.courseStudentList = mainClass.getStudentList();
+
+    if (teacher == null)
+    {
+      throw new NullPointerException(
+          "Error Teacher - course needs at least one teacher");
+    }
+    else
+    {
+      this.courseTeacherList.addTeacher(teacher);
+    }
   }
 
-  public void setName(String name)
+  public String getCourseName()
   {
-    this.name = name;
+    return courseName;
   }
 
-  public StudentList getStudentList(char className)
+  public StudentList getCourseStudentList()
   {
-    return studentList.copy();
+    return courseStudentList;
   }
 
-  public void addStudentToCourse (Student student)
+  public TeacherList getCourseTeacherList()
   {
-    studentList.add(student);
+    return courseTeacherList;
   }
 
-  public void RemoveStudentFromCourse (Student student)
+  public int getCourseSize()
   {
-    studentList.remove(student);
+    return courseStudentList.size();
   }
 
-  public TeacherList getTeacherList()
+  public void addStudentToCourse(Student student)
   {
-    return teacherList.copy();
+    courseStudentList.addStudent(student);
   }
 
-  public void addTeacherToCourse ()
+  public void removeStudentFromCourse(Student student)
   {
-    teacher.add
+    courseStudentList.removeStudent(student);
+  }
+
+  public void addTeacherToCourse(Teacher teacher)
+  {
+    courseTeacherList.addTeacher(teacher);
+  }
+
+  public void removeTeacherFromCourse(Teacher teacher)
+  {
+    if (courseTeacherList.size() > 1)
+    {
+      courseTeacherList.removeTeacher(teacher);
+    }
+    else
+    {
+      throw new IllegalArgumentException(
+          "Course needs to have a minimum of 1 teacher. Add a new teacher before removing.");
+    }
+  }
+
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof Course))
+    {
+      return false;
+    }
+    Course other = (Course) obj;
+    return courseName.equals(other.courseName) && ectsPoints == other.ectsPoints
+        && courseTeacherList.equals(other.courseTeacherList)
+        && courseStudentList.equals(other.courseStudentList);
+  }
+
+  public String toString()
+  {
+    return "Course: " + courseName + ", Number of students: "
+        + getCourseStudentList().size() + ", " + getCourseTeacherList();
   }
 
 }

@@ -5,6 +5,7 @@ public class Session
   private DateTime startTime;
   private DateTime endTime;
   private Room room;
+}
 
   /**
    * Constructor for Session
@@ -14,6 +15,7 @@ public class Session
    * @param startTime
    * @param room
    */
+  /*
   public Session(Course course, int length, DateTime startTime, Room room)
   {
     this.course = course;
@@ -28,26 +30,22 @@ public class Session
           "Length Error - length should be 2, 3 or 4");
     }
 
-    this.startTime = startTime.copy();
+    this.startTime = startTime.copy();}
 
-    if (course.getStudentList.size() <= room.getCapacity() && !(room.isBooked()))
+   */
+
+/*
+    /// MOVE THIS TO SCHEDULEMANAGER
+    if (course.getCourseStudentList().size() <= room.getCapacity())
     {
       this.room = room.copy();
-
-      /*
-
-
-      this.room.isBooked(startTime, endTime);
-
-       */
-
     }
     else
     {
       throw new IllegalArgumentException("Room to small to hold students.");
     }
 
-    endTime = new DateTime(startTime.getDate(), new Time(startTime.getTime().getHour() + (length), startTime.getTime().getMinute()));
+    this.endTime = new DateTime(startTime.getDate(), new Time(startTime.getTime().getHour() + length, startTime.getTime().getMinute()));
   }
 
   public Course getCourse()
@@ -74,19 +72,16 @@ public class Session
     return room.copy();
   }
 
-  // Change in astah: room -> newRoom
   public void changeRoom(Room newRoom)
   {
     this.room = newRoom.copy();
   }
 
-  // Change in astah: dateTime -> newDateTime
   public void changeStartTime(DateTime newDateTime)
   {
     this.startTime = newDateTime.copy();
   }
 
-  // toString + equals might not be needed?
 
   public boolean equals(Object obj)
   {
@@ -101,8 +96,10 @@ public class Session
 
   public String toString()
   {
-    return "Course: " + course + ", Date: " + startTime.getDate() + ", Time: "
-        + startTime.getTime() + ", Room: " + room;
+    return "Course: " + course.getName() + ", Date: " + startTime.getDate() + ", Starting: "
+        + startTime.getTime() + ", Ending: " + endTime.getTime() + ", Room: " + room;
   }
 
 }
+
+ */

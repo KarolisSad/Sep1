@@ -1,46 +1,61 @@
-public class StudentID extends ViaID
-{
-
-  private int studentID;
-
-  /**
-   * Constructor for StudentID
-   *
-   * @param studentID the Student ID
-   */
-  public StudentID(int studentID)
+/**
+ * A class representing Student ID, which is used as an identifier for students.
+ *
+ * @author Christian Hougaard Pedersen, Karolis and Justina
+ * @Version 1.0 - December 2021
+ */
+public class StudentID implements ViaID
   {
-    if (studentID != 0)
+    private int studentId;
+
+    /**
+     * One-argument constructor.
+     * Takes integer Student ID given as argument.
+     * If Student ID given in arguments is less than 1, an exception will be thrown.
+     *
+     * @see Student for uses.
+     *
+     * @param studentId
+     *            The Student ID
+     */
+    public StudentID(int studentId)
     {
-      this.studentID = studentID;
+      if (studentId > 0)
+      {
+        this.studentId = studentId;
+      }
+
+      else
+      {
+        throw new IllegalArgumentException("Student ID should not be less than 1");
+      }
     }
-    else
+
+    /**
+     * A method returning the Student ID as a String for use in constructing Student.
+     * Since the instance variable taken as an argument in the constructor is an integer, it is converted to String, and returned.
+     *
+     * @return a String containing the Student ID.
+     */
+    public String getIdAsString()
     {
-      throw new IllegalArgumentException("Student ID can't be 0");
+      return ""+studentId;
     }
-  }
 
-  /**
-   * Method to return students ID copy
-   *
-   * @return the copy of ID in string format
-   */
-  public String getIdAsString()
-  {
-    return String.valueOf(copy().studentID);
-  }
 
-  /**
-   * Method to return the copy of StudentID
-   *
-   * @return copy of StudentID
-   */
-  public StudentID copy()
-  {
-    return new StudentID(studentID);
+    /**
+     * A Copy method.
+     * Since Student ID implements the VIA ID interface,
+     * which has composition-relationships with the Student class
+     * this method is needed to take a copy of the VIA-ID when you return it.
+     *
+     * @return a copy of the Student ID the method is used on.
+     */
+    public StudentID copy()
+    {
+      StudentID other = new StudentID(studentId);
+      return other;
+    }
+
 
   }
-
-
-  // Illegal if ID is String
-}

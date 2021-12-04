@@ -2,61 +2,97 @@ import java.util.ArrayList;
 
 public class StudentList
 {
+  private ArrayList<Student> studentList;
 
-  private ArrayList<Student> students;
-
-  /**
-   * Constructor for StudentList
-   */
   public StudentList()
   {
-    students = new ArrayList<>();
+    this.studentList = new ArrayList<>();
   }
 
-  /**
-   * Adds Student to the list
-   *
-   * @param student the student
-   */
   public void addStudent(Student student)
   {
-    students.add(student);
-  }
-
-  /**
-   * Remove student from list
-   *
-   * @param Id students ID
-   */
-  public void removeStudentByID(String Id)
-  {
-    for (int i = 0; i < students.size(); i++)
+    if (studentList.isEmpty())
     {
-      if (students.get(i).getId().equals(Id))
+      studentList.add(student);
+    }
+    else
+    {
+      if (studentList.contains(student))
       {
-        students.remove(i);
-        break;
+        throw new IllegalArgumentException("Student already in system.");
+      }
+      else
+      {
+        studentList.add(student);
       }
     }
   }
 
-  /**
-   * Method for getting student
-   * @param index the index
-   * @return the student
-   */
+  public void removeStudent(Student student)
+  {
+    if (studentList.contains(student))
+    {
+      studentList.remove(student);
+    }
+    else
+    {
+      throw new IllegalArgumentException("Student not in selected list: ");
+    }
+  }
+
+  public void removeStudentByIndex(int index)
+  {
+    studentList.remove(index);
+  }
+
+  public void removeStudentByID(String studentID)
+  {
+    for (int i = 0; i < studentList.size(); i++)
+    {
+      if (studentList.get(i).getStudentId().equals(studentID))
+      {
+        studentList.remove(i);
+        break;
+      }
+    }
+     // throw new IllegalArgumentException("Student not found");
+  }
+
+  public int size()
+  {
+    return studentList.size();
+  }
+
   public Student getStudent(int index)
   {
-    return students.get(index);
+    return studentList.get(index);
   }
 
-  /**
-   * Method to get copy of StudentList
-   * @return copy of StudentList
-   */
-  public ArrayList<Student> copy()
+  public StudentList copy()
   {
-    return new ArrayList<Student>(students);
+    StudentList other = new StudentList();
+    for (int i = 0; i < studentList.size(); i++)
+    {
+      other.addStudent(studentList.get(i));
+    }
+    return other;
   }
 
+  public boolean contains(Student student)
+  {
+    return studentList.contains(student);
+  }
+
+  // TESTING
+
+  public String toString()
+  {
+    String s = "Students in list:\n";
+    for (int i = 0; i < studentList.size(); i++)
+    {
+      s += studentList.get(i) + "\n";
+    }
+    return s;
+  }
 }
+

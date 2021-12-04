@@ -4,48 +4,145 @@ public class SessionList
 {
   private ArrayList<Session> sessionList;
 
-  // ADD to astah
   public SessionList()
   {
     this.sessionList = new ArrayList<>();
   }
 
-  public void add(Session session)
+  public void addSession(Session session)
   {
     if (sessionList.isEmpty())
     {
       sessionList.add(session);
     }
 
-    else
+    /*
+    else if (isSessionBookable(session))
     {
-      for (int i = 0; i < sessionList.size(); i++)
+      sessionList.add(session);
+    }
+    else
+      throw new IllegalArgumentException("Session not added :-(");
+
+     */
+  }
+
+
+  public boolean contains(Session session)
+  {
+    return sessionList.contains(session);
+  }
+
+
+  /*
+  public boolean checkRoomAvailability(Session session)
+  {
+    for (int i = 0; i < sessionList.size(); i++)
+    {
+      if (session.equals(sessionList.get(i)))
       {
+        throw new IllegalArgumentException("Session already added"); //working
+      }
 
-        if (session.getRoom().equals(sessionList.get(i)
-            .getRoom())) // IF SESSION IS IN SAME ROOM AS SessionList[i]
+      else if (session.getRoom().getRoomNumber().equals(
+          sessionList.get(i).getRoom()
+              .getRoomNumber())) // if room is the same as another room in list
+      {
+        if (session.getStartTime().getDate()
+            .equals(sessionList.get(i).getStartTime().getDate()))
         {
-          if (session.getStartTime().equals(sessionList.get(i)
-              .getStartTime())) // If start time is identical to other session.
+          if (session.getStartTime().getTime()
+              .isBefore(sessionList.get(i).getEndTime().getTime())
+              && !(session.getEndTime().getTime()
+              .isBefore(sessionList.get(i).getStartTime().getTime())))
           {
-            throw new IllegalArgumentException("Room already booked");
-          }
-          else if (session.getStartTime()
-              .isBefore(sessionList.get(i).getEndTime())) // If start time is while another class is still in session in room
-          {
-            throw new IllegalArgumentException("Room already booked");
-          }
-
-          else
-          {
-            sessionList.add(session);
+            throw new IllegalArgumentException(
+                "Room already in use for selected time. Session: " + session
+                    + " not added\nCause: " + sessionList.get(i));
           }
         }
       }
     }
+    return true;
   }
 
-  // Should maybe be changed in Astah?? Se examples below:
+   */
+
+  /*
+
+  public boolean isSessionBookable(Session session)
+  {
+    if (sessionList.isEmpty())
+    {
+      return true;
+    }
+    else if (checkStudentAvailability(session) && checkRoomAvailability(
+        session))
+    {
+      return true;
+    }
+    else
+    return false;
+  }
+
+   */
+
+
+  /*
+  public boolean isSessionBookable(Session session)
+  {
+    if (sessionList.isEmpty())
+    {
+      return true;
+    }
+    else if (session.getRoomList().isRoomAvailable(session.getRoom(), session.getStartTime(),
+        session.getEndTime()) && checkStudentAvailability(session))
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+   */
+
+/*
+
+  public boolean checkStudentAvailability(Session session)
+  {
+
+    for (int i = 0; i < sessionList.size(); i++)
+    {
+      if (session.getCourse().getClassStudentList()
+          .equals(sessionList.get(i).getCourse().getClassStudentList()))
+      {
+        for (Session value : sessionList)
+        {
+          if (session.getStartTime().getDate()
+              .equals(value.getStartTime().getDate()))
+          {
+            if (session.getStartTime().getTime()
+                .isBefore(value.getEndTime().getTime())
+                && !(session.getEndTime().getTime()
+                .isBefore(value.getStartTime().getTime())))
+            {
+              throw new IllegalArgumentException(
+                  "Students already in session for selected time. Session: "
+                      + session + " not added\nCause: " + value);
+            }
+          }
+        }
+      }
+
+    }
+    return true;
+  }
+
+  public int numberOfSessions()
+  {
+    return sessionList.size();
+  }
+
   public void removeSession(Session session)
   {
     sessionList.remove(session);
@@ -53,32 +150,90 @@ public class SessionList
 
   public Session getSession(Session session)
   {
-    for (int i = 0; i < sessionList.size(); i++)
+    for (Session value : sessionList)
     {
-      if (sessionList.get(i).equals(session))
-        return sessionList.get(i);
+      if (value.equals(session))
+        return value;
     }
 
     throw new NullPointerException("Session not found");
   }
 
-  // Might not be useable in our case - By index
   public Session getSessionByIndex(int index)
   {
     return sessionList.get(index);
   }
 
+  // TESTING
+  public String toString()
+  {
+    String s = "";
+    for (Session session : sessionList)
+    {
+      s += session + "\n";
+    }
+
+    return s;
+  }
+
+  ////////////////////    MISC    \\\\\\\\\\\\\\\\\\\\
+
+/*    Tried to combine both availability methods - error in isRoomAvailable
+  public boolean isSessionBookable(Session session)
+  {
+  if (sessionList.isEmpty())
+      {
+        return true;
+      }
+   else if (session.getRoomList().isRoomAvailable(session.getRoom(), session.getStartTime(),
+          session.getEndTime()) && checkStudentAvailability(session))
+      {
+        return true;
+      }
+
+    return false;
+  }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+                This whole part SHOULD be where we check availability for students in the course but not in the same class.
+      else
+      {
+        int looping = 0;
+        while (looping < session.getCourse().getClassStudentList().size())
+        {
+          for (int b = 0;
+               b < session.getCourse().getClassStudentList().size(); b++)
+          {
+            if (!session.getCourse().getCourseStudentList().getStudent(b)
+                .equals(session.getCourse().getClassStudentList().getStudent(
+                    looping)))  // IF student at index b in CourseStudentList is NOT a part of classStudentList, add them to studentNotInMainClass
+            {
+
+            }
+            looping++;
+          }
+        }
+      }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   // By TimeDate & Course - might be good?? - throws nullpointer-exception
+
   public Session getSessionByDateTimeAndCourse(DateTime dateTime, String course)
   {
-    for (int i = 0; i < sessionList.size(); i++)
+    for (Session session : sessionList)
     {
-      if (sessionList.get(i).getCourse().equals(course) && sessionList.get(i)
-          .getStartTime().equals(dateTime))
-        return sessionList.get(i);
+      if (session.getCourse().equals(course) && session.getStartTime()
+          .equals(dateTime))
+        return session;
     }
 
     throw new NullPointerException("Session not found");
   }
 
+ */
 }
