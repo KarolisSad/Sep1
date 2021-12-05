@@ -21,7 +21,29 @@ public class RoomList
 
   public Room getRoom(int index)
   {
-    return roomList.get(index);
+    if (roomList.size() >= index + 1)
+    {
+      return roomList.get(index);
+    }
+    else
+    {
+      throw new ArrayIndexOutOfBoundsException(
+          "Index out of bounds for RoomList. Entered index: " + index
+              + ", highest possible index: " + (getNumberOfRooms() - 1));
+    }
+  }
+
+  public Room getRoomByRoomNumber(String roomNumber)
+  {
+    for (int i = 0; i < roomList.size(); i++)
+    {
+      if (roomList.get(i).getRoomNumber().equals(roomNumber))
+      {
+        return roomList.get(i);
+      }
+    }
+
+    throw new IllegalArgumentException("Room with name: " + roomNumber + " not found.");
   }
 
   public int getNumberOfRooms()

@@ -75,12 +75,11 @@ public class TeacherList
     return other;
   }
 
+  public boolean contains(Teacher teacher)
+  {
+    return teacherList.contains(teacher);
+  }
 
-  /*
-      MISSING ADD TEACHER BY ID - NOT POSSIBLE HERE??
-   */
-
-  // TESTING
 
   public String toString()
   {

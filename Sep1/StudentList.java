@@ -11,21 +11,7 @@ public class StudentList
 
   public void addStudent(Student student)
   {
-    if (studentList.isEmpty())
-    {
-      studentList.add(student);
-    }
-    else
-    {
-      if (studentList.contains(student))
-      {
-        throw new IllegalArgumentException("Student already in system.");
-      }
-      else
-      {
-        studentList.add(student);
-      }
-    }
+    studentList.add(student);
   }
 
   public void removeStudent(Student student)
@@ -55,7 +41,7 @@ public class StudentList
         break;
       }
     }
-     // throw new IllegalArgumentException("Student not found");
+     throw new IllegalArgumentException("Student not found");
   }
 
   public int size()
