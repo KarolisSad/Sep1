@@ -14,6 +14,20 @@ public class CourseList
     courseList.add(course);
   }
 
+  public Course getCourseByName(String courseName)
+  {
+    for (int i = 0; i < courseList.size(); i++)
+    {
+      if (courseList.get(i).getCourseName().equals(courseName))
+      {
+        return courseList.get(i);
+      }
+    }
+
+    throw new IllegalArgumentException("Course with name: " + courseName + " not found.");
+  }
+
+
   public int getNumberOfCourses()
   {
     return courseList.size();

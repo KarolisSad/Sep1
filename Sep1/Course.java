@@ -4,6 +4,7 @@ public class Course
   private int ectsPoints;
   private TeacherList courseTeacherList;
   private StudentList courseStudentList;
+  private Class mainClass;
 
   public Course(String courseName, int ectsPoints, Class mainClass,
       Teacher teacher)
@@ -20,6 +21,10 @@ public class Course
     if (mainClass == null)
     {
       throw new NullPointerException("ERROR CLASS");
+    }
+    else
+    {
+      this.mainClass = mainClass;
     }
 
     if (courseName.equals(""))
@@ -43,6 +48,7 @@ public class Course
     {
       this.courseTeacherList.addTeacher(teacher);
     }
+
   }
 
   public String getCourseName()
@@ -68,6 +74,11 @@ public class Course
   public void addStudentToCourse(Student student)
   {
     courseStudentList.addStudent(student);
+  }
+
+  public Class getMainClass()
+  {
+    return mainClass;
   }
 
   public void removeStudentFromCourse(Student student)
@@ -108,7 +119,7 @@ public class Course
   public String toString()
   {
     return "Course: " + courseName + ", Number of students: "
-        + getCourseStudentList().size() + ", " + getCourseTeacherList();
+        + getCourseStudentList().size() + ", " + getCourseTeacherList() + "\n";
   }
 
 }

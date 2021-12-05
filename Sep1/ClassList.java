@@ -39,8 +39,4 @@ public class ClassList
     }
       return s;
   }
-
-  // TESTING
-
-
 }
