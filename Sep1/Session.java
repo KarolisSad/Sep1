@@ -1,45 +1,19 @@
 public class Session
 {
   private Course course;
-  private int length;
+  private int sessionLength;
   private DateTime startTime;
   private DateTime endTime;
   private Room room;
 
-  /**
-   * Constructor for Session
-   *
-   * @param course    the course
-   * @param length
-   * @param startTime
-   * @param room
-   */
-  public Session(Course course, int length, DateTime startTime, Room room)
+  public Session(Course course, int sessionLength, DateTime startTime,
+      Room room)
   {
     this.course = course;
 
-    if (length == 2 || length == 3 || length == 4)
-    {
-      this.length = length;
-    }
-    else
-    {
-      throw new IllegalArgumentException(
-          "Length Error - length should be 2, 3 or 4");
-    }
-
-    this.startTime = startTime.copy();
-
-    if (course.getStudentList().size() <= room.getCapacity() && !(room.isBooked()))
-    {
-      this.room = room.copy();
-    }
-    else
-    {
-      throw new IllegalArgumentException("Room to small to hold students.");
-    }
-
-    this.endTime = new DateTime(startTime.getDate(), new Time(startTime.getTime().getHour() + length, startTime.getTime().getMinute()));
+    setSessionLength(sessionLength);
+    setStartTime(startTime);
+    setRoom(room);
   }
 
   public Course getCourse()
@@ -47,16 +21,17 @@ public class Session
     return course;
   }
 
-  public int getLength()
+  public int getSessionLength()
   {
-    return length;
+    return sessionLength;
   }
 
-  public DateTime getStartTime()
+  public DateTime getStartDateTime()
   {
-    return startTime.copy();
+    return startTime;
   }
-  public DateTime getEndTime()
+
+  public DateTime getEndDateTime()
   {
     return endTime;
   }
@@ -66,20 +41,48 @@ public class Session
     return room.copy();
   }
 
-  // Change in astah: room -> newRoom
-  public void changeRoom(Room newRoom)
+  public void setRoom(Room room)
   {
-    this.room = newRoom.copy();
+    if (room == null)
+    {
+      throw new IllegalArgumentException("Room should not be null.");
+    }
+
+    else
+    {
+      if (room.getCapacity() >= course.getCourseSize())
+      {
+        this.room = room;
+      }
+
+      else
+      {
+        throw new IllegalArgumentException(
+            "Room too small to hold current course");
+      }
+    }
   }
 
-  // Change in astah: dateTime -> newDateTime
-  public void changeStartTime(DateTime newDateTime)
+  public void setStartTime(DateTime newStartTime)
   {
-    this.startTime = newDateTime.copy();
+    this.startTime = newStartTime.copy();
+    this.endTime = new DateTime(startTime.getDate(),
+        new Time(startTime.getTime().getHour() + sessionLength,
+            startTime.getTime().getMinute()));
   }
 
-
-  // toString + equals might not be needed?
+  public void setSessionLength(int sessionLength)
+  {
+    if (sessionLength == 2 || sessionLength == 3 || sessionLength == 4)
+    {
+      this.sessionLength = sessionLength;
+    }
+    else
+    {
+      throw new IllegalArgumentException(
+          "Length Error - length should be 2, 3 or 4");
+    }
+  }
 
   public boolean equals(Object obj)
   {
@@ -88,14 +91,14 @@ public class Session
       return false;
     }
     Session other = (Session) obj;
-    return course.equals(other.course) && length == other.length
+    return course.equals(other.course) && sessionLength == other.sessionLength
         && startTime.equals(other.startTime) && room.equals(other.room);
   }
 
   public String toString()
   {
-    return "Course: " + course.getName() + ", Date: " + startTime.getDate() + ", Starting: "
+    return "Course: " + course.getCourseName() + ", Date: " + startTime.getDate() + ", Starting: "
         + startTime.getTime() + ", Ending: " + endTime.getTime() + ", Room: " + room;
   }
-
 }
+

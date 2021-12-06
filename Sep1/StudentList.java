@@ -11,26 +11,19 @@ public class StudentList
 
   public void addStudent(Student student)
   {
-    if (studentList.isEmpty())
-    {
-      studentList.add(student);
-    }
-    else
-    {
-      if (studentList.contains(student))
-      {
-        throw new IllegalArgumentException("Student already in system.");
-      }
-      else
-      {
-        studentList.add(student);
-      }
-    }
+    studentList.add(student);
   }
 
   public void removeStudent(Student student)
   {
-    studentList.remove(student);
+    if (studentList.contains(student))
+    {
+      studentList.remove(student);
+    }
+    else
+    {
+      throw new IllegalArgumentException("Student not in selected list: ");
+    }
   }
 
   public void removeStudentByIndex(int index)
@@ -48,6 +41,7 @@ public class StudentList
         break;
       }
     }
+     throw new IllegalArgumentException("Student not found");
   }
 
   public int size()
@@ -70,7 +64,10 @@ public class StudentList
     return other;
   }
 
-  // TESTING
+  public boolean contains(Student student)
+  {
+    return studentList.contains(student);
+  }
 
   public String toString()
   {

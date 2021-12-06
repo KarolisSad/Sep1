@@ -1,86 +1,72 @@
-import java.util.ArrayList;
-
 public class Course
 {
-  private String name;
-  private int ECTS;
-  private Class aClass;
+  private String courseName;
+  private int ectsPoints;
   private TeacherList courseTeacherList;
-  private TeacherList allTeachers;
   private StudentList courseStudentList;
-  private Teacher teacher;
+  private Class mainClass;
 
-
-  public Course(String name, int ECTS, Class aClass, Teacher teacher,
-      TeacherList allTeachers)
+  public Course(String courseName, int ectsPoints, Class mainClass,
+      Teacher teacher)
   {
-    if (name.equals(""))
+    if (ectsPoints == 5 || ectsPoints == 10)
     {
-      throw new IllegalArgumentException("Course name should not be empty");
+      this.ectsPoints = ectsPoints;
     }
     else
     {
-      String courseName = "";
-      courseName += name;
-      courseName += aClass.getClassName();
-      this.name = courseName;
+      throw new IllegalArgumentException("ECTS points should be 5 or 10");
     }
 
-    if (ECTS == 5 || ECTS == 10 || ECTS == 15)
+    if (mainClass == null)
     {
-      this.ECTS = ECTS;
+      throw new NullPointerException("ERROR CLASS");
     }
     else
     {
-      throw new IllegalArgumentException("ECTS should be 5, 10 or 15");
+      this.mainClass = mainClass;
     }
 
-    if (aClass != null)
+    if (courseName.equals(""))
     {
-      this.aClass = aClass;
+      throw new IllegalArgumentException("Course Name should not be empty.");
     }
     else
     {
-      throw new IllegalArgumentException("Class should not be null");
+      this.courseName = courseName + mainClass.getClassID();
     }
-    this.allTeachers = allTeachers;
 
-    this.courseStudentList = aClass.getStudentList();
-    courseTeacherList = new TeacherList();
+    this.courseTeacherList = new TeacherList();
+    this.courseStudentList = mainClass.getStudentList();
 
-    for (int i = 0; i < allTeachers.size(); i++)
+    if (teacher == null)
     {
-      if (allTeachers.getTeacher(i).equals(teacher))
-      {
-        this.teacher = teacher;
-        courseTeacherList.addTeacher(teacher);
-      }
+      throw new NullPointerException(
+          "Error Teacher - course needs at least one teacher");
     }
-    courseStudentList = aClass.getStudentList();
+    else
+    {
+      this.courseTeacherList.addTeacher(teacher);
+    }
 
   }
 
-  public void setName(String name)
+  public String getCourseName()
   {
-    if (name.equals(""))
-    {
-      throw new IllegalArgumentException("Course name should not be empty");
-    }
-    else
-    {
-      String courseName = "";
-      courseName += name;
-      courseName += aClass.getClassName();
-      this.name = courseName;
-    }
+    return courseName;
   }
 
-  public StudentList getStudentList()
+  public StudentList getCourseStudentList()
   {
-    return courseStudentList.copy();
+    return courseStudentList;
   }
 
-  public int numberOfStudents()
+  public TeacherList getCourseTeacherList()
+  {
+    return courseTeacherList;
+  }
+
+  public int getCourseSize()
   {
     return courseStudentList.size();
   }
@@ -90,52 +76,50 @@ public class Course
     courseStudentList.addStudent(student);
   }
 
-  public void RemoveStudentFromCourse(
-      Student student)
+  public Class getMainClass()
   {
-    for (int i = 0; i < courseStudentList.size(); i++)
-    {
-      if (courseStudentList.getStudent(i).equals(student))
-      {
-        courseStudentList.removeStudentByIndex(i);
-        break;
-      }
-    }
+    return mainClass;
   }
 
-  public String getName()
+  public void removeStudentFromCourse(Student student)
   {
-    return name;
+    courseStudentList.removeStudent(student);
   }
 
   public void addTeacherToCourse(Teacher teacher)
   {
-    for (int i = 0; i < courseTeacherList.size(); i++)
-    {
-      if (teacher.equals(courseTeacherList.getTeacher(i)))
-      {
-        throw new IllegalArgumentException("Teacher already added.");
-      }
-    }
     courseTeacherList.addTeacher(teacher);
   }
 
+  public void removeTeacherFromCourse(Teacher teacher)
+  {
+    if (courseTeacherList.size() > 1)
+    {
+      courseTeacherList.removeTeacher(teacher);
+    }
+    else
+    {
+      throw new IllegalArgumentException(
+          "Course needs to have a minimum of 1 teacher. Add a new teacher before removing.");
+    }
+  }
 
-  //TESTING
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof Course))
+    {
+      return false;
+    }
+    Course other = (Course) obj;
+    return courseName.equals(other.courseName) && ectsPoints == other.ectsPoints
+        && courseTeacherList.equals(other.courseTeacherList)
+        && courseStudentList.equals(other.courseStudentList);
+  }
 
   public String toString()
   {
-   String s = "Course Name: " + name + ", ECTS-points: " + ECTS + ", number of students: " + numberOfStudents();
-   if (courseTeacherList.size() > 1)
-   {
-     s += ", Teachers: " + courseTeacherList;
-   }
-   else
-   {
-     s += ", Teacher: " + courseTeacherList;
-   }
-
-   return s;
+    return "Course: " + courseName + ", Number of students: "
+        + getCourseStudentList().size() + ", " + getCourseTeacherList() + "\n";
   }
 
 }

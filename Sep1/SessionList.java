@@ -4,127 +4,64 @@ public class SessionList
 {
   private ArrayList<Session> sessionList;
 
-  // ADD to astah
   public SessionList()
   {
     this.sessionList = new ArrayList<>();
   }
 
-  public boolean checkRoomAvailability(Session session)
+  public void addSession(Session session)
   {
-    for (int i = 0; i < sessionList.size(); i++)
-    {
-      if (session.equals(sessionList.get(i)))
-      {
-        throw new IllegalArgumentException("Session already added"); //working
-      }
-
-      else if (session.getRoom().getRoomNumber().equals(sessionList.get(i).getRoom()
-          .getRoomNumber())) // if room is the same as another room in list
-      {
-        if (session.getStartTime().getDate().equals(sessionList.get(i).getStartTime().getDate()))
-        {
-          if (session.getStartTime().getTime().isBefore(sessionList.get(i).getEndTime().getTime())
-              && !(session.getEndTime().getTime().isBefore(sessionList.get(i).getStartTime().getTime())))
-          {
-            throw new IllegalArgumentException(
-                "Room already in use for selected time. Session: " + session + " not added\nCause: " + sessionList.get(i));
-          }
-        }
-      }
-    }
-    return true;
+    sessionList.add(session);
   }
 
-  public boolean checkStudentAvailability(Session session)
+  public void removeSessionByIndex(int index)
   {
-
-    for (int i = 0; i < sessionList.size(); i++)
-    {
-      //for (int j = 0; j < session.getCourse().getStudentList().size(); j++)
-      if (session.getCourse().getStudentList()
-          .equals(sessionList.get(i).getCourse().getStudentList()))
-      {
-        throw new IllegalArgumentException(
-            "Student overlap between two sessions");
-      }
-    }
-    return true;
+    sessionList.remove(index);
   }
 
-  public void add(Session session)
-  {
-    for (int i = 0; i < sessionList.size(); i++)
-    {
-      if (sessionList.get(i).equals(session))
-      {
-        throw new IllegalArgumentException("Session already booked.");
-      }
-    }
-    if (sessionList.isEmpty())
-    {
-      sessionList.add(session);
-      return;
-    }
-
-    else if (checkRoomAvailability(session) && checkStudentAvailability(
-        session))
-    {
-      sessionList.add(session);
-    }
-
-    else
-    {
-      throw new IllegalArgumentException(
-          "It shouldn't be possible to reach this point");
-    }
-  }
-
-  // Should maybe be changed in Astah?? Se examples below:
   public void removeSession(Session session)
   {
-    sessionList.remove(session);
-  }
-
-  public Session getSession(Session session)
-  {
-    for (int i = 0; i < sessionList.size(); i++)
+    if (sessionList.contains(session))
     {
-      if (sessionList.get(i).equals(session))
-        return sessionList.get(i);
+      sessionList.remove(session);
     }
-
-    throw new NullPointerException("Session not found");
-  }
-
-  // Might not be useable in our case - By index
-  public Session getSessionByIndex(int index)
-  {
-    return sessionList.get(index);
-  }
-
-  // By TimeDate & Course - might be good?? - throws nullpointer-exception
-  public Session getSessionByDateTimeAndCourse(DateTime dateTime, String course)
-  {
-    for (int i = 0; i < sessionList.size(); i++)
+    else
     {
-      if (sessionList.get(i).getCourse().equals(course) && sessionList.get(i)
-          .getStartTime().equals(dateTime))
-        return sessionList.get(i);
+      throw new IllegalArgumentException("Session not in list.");
     }
-
-    throw new NullPointerException("Session not found");
   }
 
-  // TESTING
+  public int getNumberOfSessions()
+  {
+    return sessionList.size();
+  }
+
+  public Session getSession(int index)
+  {
+    if (sessionList.size() >= index + 1)
+    {
+      return sessionList.get(index);
+    }
+    else
+    {
+      throw new ArrayIndexOutOfBoundsException(
+          "Index out of bounds for SessionList. Entered index: " + index
+              + ", highest possible index: " + (getNumberOfSessions() - 1));
+    }
+  }
+
+  public boolean contains(Session session)
+  {
+    return sessionList.contains(session);
+  }
+
   public String toString()
   {
-    String s = "";
+    String s = "Sessions: ";
     for (int i = 0; i < sessionList.size(); i++)
     {
-      s += sessionList.get(i) + "\n";
+      s += "\n" + sessionList.get(i);
     }
-
     return s;
   }
 }

@@ -1,14 +1,8 @@
 public class Teacher
 {
   private String name;
-  private TeacherID id;
+  private TeacherID teacherID;
 
-  /**
-   * Constructor for Teacher
-   *
-   * @param name      the name
-   * @param teacherID the Teacher ID
-   */
   public Teacher(String name, TeacherID teacherID)
   {
     if (name == null)
@@ -21,36 +15,26 @@ public class Teacher
     {
       throw new IllegalArgumentException("Teacher must have ID");
     }
-    else {this.id = teacherID.copy();}
+    else {this.teacherID = teacherID.copy();}
 
   }
 
-  /**
-   * Getter for ID
-   *
-   * @return teachers ID in String format
-   */
-  public String getID()
+  public String getTeacherId()
   {
-    return id.getIdAsString();
+    return teacherID.getIdAsString();
   }
-
-
-  // EQUALS
 
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Teacher))
     {return false;}
     Teacher other = (Teacher) obj;
-    return name.equals(other.name) && id.equals(other.id);
+    return name.equals(other.name) && getTeacherId().equals(other.getTeacherId());
   }
 
 
-  // FOR TESTING
-
   public String toString()
   {
-    return "Name: " + name + ", Teacher ID: " + id.getIdAsString();
+    return "Name: " + name + ", Teacher ID: " + getTeacherId();
   }
 }

@@ -11,20 +11,13 @@ public class TeacherList
 
   public void addTeacher(Teacher teacher)
   {
-    if (teacherList.isEmpty())
+    if (!(teacherList.contains(teacher)))
     {
       teacherList.add(teacher);
     }
     else
     {
-      if (teacherList.contains(teacher))
-      {
-        throw new IllegalArgumentException("Teacher already in system.");
-      }
-      else
-      {
-        teacherList.add(teacher);
-      }
+      throw new IllegalArgumentException("Teacher already added");
     }
   }
 
@@ -37,7 +30,7 @@ public class TeacherList
   {
     for (int i = 0; i < teacherList.size(); i++)
     {
-      if (teacherList.get(i).getID().equals(teacherID))
+      if (teacherList.get(i).getTeacherId().equals(teacherID))
       {
         teacherList.remove(i);
         break;
@@ -55,6 +48,23 @@ public class TeacherList
     return teacherList.get(index);
   }
 
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof TeacherList))
+    {
+      return false;
+    }
+    TeacherList other = (TeacherList) obj;
+    for (int i = 0; i < teacherList.size(); i++)
+    {
+      if (!(teacherList.get(i).equals(other.getTeacher(i))))
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
   public TeacherList copy()
   {
     TeacherList other = new TeacherList();
@@ -65,19 +75,28 @@ public class TeacherList
     return other;
   }
 
-  /*
-      MISSING ADD TEACHER BY ID - NOT POSSIBLE HERE??
-   */
+  public boolean contains(Teacher teacher)
+  {
+    return teacherList.contains(teacher);
+  }
 
-  // TESTING
 
   public String toString()
   {
-    String s = "Teachers in list:\n";
-    for (int i = 0; i < teacherList.size(); i++)
+    switch (teacherList.size())
     {
-      s += teacherList.get(i) + "\n";
+      case 0:
+        return "No teachers in this list";
+      case 1:
+        return "Teacher:\n" + teacherList.get(0);
+      default:
+        String s = "Teachers in list:\n";
+        for (Teacher teacher : teacherList)
+        {
+          s += teacher + "\n";
+        }
+        return s;
     }
-    return s;
+
   }
 }
