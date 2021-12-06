@@ -5,8 +5,14 @@ public class DateTime
 
   public DateTime(Date date, Time time)
   {
-    this.time = time.copy();
-    this.date = date.copy();
+    if (date.isLegal() && date.equals(date.today()) && time.isLegal() || date.isLegal() && !date.equals(date.today()))
+    {
+      this.date = date;
+      this.time = time;
+    }
+    else
+    {
+    throw new IllegalArgumentException("Date Time error - Date and time should not be BEFORE today.");}
   }
 
   public Time getTime()
@@ -19,14 +25,10 @@ public class DateTime
     return date;
   }
 
-  public String getDateTime()
-  {
-    return "dATE: " + date.getYear()+ "-" + date.getMonth() + "-" + date.getDay() + "tIME:" + time.getHour() + ":"+ time.getMinute();
-  }
-
   public boolean isBefore(DateTime otherDateTime)
   {
-    return getDate().isBefore(otherDateTime.getDate()) || getDate().equals(otherDateTime.getDate()) && getTime().isBefore(
+    return getDate().isBefore(otherDateTime.getDate())
+        || getDate().equals(otherDateTime.getDate()) && getTime().isBefore(
         otherDateTime.getTime());
   }
 
@@ -36,3 +38,4 @@ public class DateTime
     return other;
   }
 }
+

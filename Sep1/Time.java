@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+
 public class Time
 {
   private int hour;
@@ -68,6 +70,23 @@ public class Time
     }
     Time other = (Time)obj;
     return minute == other.minute && hour == other.hour;
+  }
+
+  public Time today()
+  {
+    return new Time(LocalTime.now().getHour(), LocalTime.now().getMinute());
+  }
+
+  public boolean isLegal()
+  {
+    if (isBefore(today()) && !today().equals(this))
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
 
   public String toString()
