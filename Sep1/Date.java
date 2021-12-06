@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Date
 {
   private int day;
@@ -55,16 +57,15 @@ public class Date
     return month;
   }
 
-  public boolean isLeapYear()
-  {
-    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
-  }
-
   public int getYear()
   {
     return year;
   }
 
+  public boolean isLeapYear()
+  {
+    return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+  }
 
   public Date copy()
   {
@@ -78,9 +79,10 @@ public class Date
     {
       return false;
     }
-    Date other = (Date)obj;
+    Date other = (Date) obj;
     return day == other.day && month == other.month && year == other.year;
   }
+
   public String toString()
   {
     return String.format("%04d-%02d-%02d", year, month, day);
@@ -88,11 +90,29 @@ public class Date
       (0 is inserted first if number is only one cipher, AND separates numbers with colon) */
   }
 
-  public boolean isBefore(Date date)
+  public boolean isBefore(Date otherDate)
   {
-    return (this.year < date.year || (this.year == date.year &&
-        (this.month < date.month || (this.month == date.month &&
-            (this.day < date.day)))));
+    return (this.year < otherDate.year || (this.year == otherDate.year && (
+        this.month < otherDate.month || (this.month == otherDate.month && (
+            this.day < otherDate.day)))));
+  }
+
+  public Date today()
+  {
+    return new Date(LocalDate.now().getDayOfMonth(),
+        LocalDate.now().getMonthValue(), LocalDate.now().getYear());
+  }
+  public boolean isLegal()
+  {
+    if (isBefore(today()) && !today().equals(this))
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+
   }
 
 }
