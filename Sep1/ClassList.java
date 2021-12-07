@@ -47,7 +47,7 @@ public class ClassList
   }
 
   /**
-   * mehtod checks if the specified is in the array list
+   * method checks if the specified class is in the array list
    * @param containsClass class that is checks if it's part of the array list.
    * @return boolean (true of false), if the class is part of the array list.
    */
