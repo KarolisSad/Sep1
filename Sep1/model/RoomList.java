@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 public class RoomList
@@ -17,6 +19,11 @@ public class RoomList
   public void removeRoom(int index)
   {
     roomList.remove(index);
+  }
+
+  public void removeRoom(Room room)
+  {
+    roomList.remove(room);
   }
 
   public Room getRoom(int index)
@@ -54,6 +61,17 @@ public class RoomList
   public boolean contains(Room room)
   {
     return roomList.contains(room);
+  }
+
+  public RoomList copy()
+  {
+    RoomList other = new RoomList();
+    for (int i = 0; i < roomList.size(); i++)
+    {
+      other.addRoom(roomList.get(i));
+    }
+
+    return other;
   }
 
   public String toString()

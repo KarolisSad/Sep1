@@ -1,3 +1,5 @@
+package model;
+
 /**
  * The class represents courses.
  * @author Group 8
@@ -56,7 +58,7 @@ public class Course
     }
 
     this.courseTeacherList = new TeacherList();
-    this.courseStudentList = mainClass.getStudentList();
+    this.courseStudentList = mainClass.getClassStudentList();
 
     if (teacher == null)
     {

@@ -1,3 +1,5 @@
+import mediator.ScheduleModelManager;
+
 public class modelManagerTest
 {
   public static void main(String[] args)
@@ -36,8 +38,8 @@ public class modelManagerTest
     manager.addCourse("SDJ1", 10, "1DK", "BOB");
     //System.out.println(manager.getCourseList());
 
-    manager.addSession("SDJ1Y", 4, 1,1,2021, 8, 30, "1");
-    manager.addSession("SDJ1X", 2,1,1,2021,9,20,"2");
+    manager.addSession("SDJ1Y", 4, 1,1,2022, 8, 30, "1");
+    manager.addSession("SDJ1X", 2,1,1,2022,13,20,"2");
     System.out.println(manager.getSessionList());
   }
 }

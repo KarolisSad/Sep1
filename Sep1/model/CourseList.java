@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 /**
  * The class represents CourseList that stores list of courses as well as a few methods that interact with said list.

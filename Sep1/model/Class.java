@@ -1,3 +1,5 @@
+package model;
+
 /**
  * This class representing a student class.
  *
@@ -79,9 +81,9 @@ public class Class
 
   /**
    * calls a specified student list
-   * @return a copy of the student list
+   * @return a copy of all students enrolled into the class the method is called on.
    */
-  public StudentList getStudentList()
+  public StudentList getClassStudentList()
   {
     return cStudentList.copy();
   }
@@ -112,6 +114,7 @@ public class Class
   {
     return cStudentList.size();
   }
+
 
   /**
    * calls student list so that the new student would be added to the existing list.

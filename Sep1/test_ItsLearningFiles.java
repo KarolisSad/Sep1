@@ -1,3 +1,5 @@
+import mediator.ScheduleModelManager;
+
 public class test_ItsLearningFiles
 {
   public static void main(String[] args)
@@ -76,9 +78,40 @@ public class test_ItsLearningFiles
     //System.out.println(manager.getCourseList());
 
 
-    manager.addSession("SDJ1X", 4, 8,12,2021,8,20,"C05.15");
-    manager.addSession("SDJ1Y", 4, 8,12,2021,8,20,"C05.16a");
-    manager.addSession("SDJ1Z", 4, 9,12,2021,8,20,"C05.16b");
+    manager.addSession("SDJ1X", 4, 8,12,2021,8,20,"C05.16a");
+    manager.addSession("SDJ1Y", 4, 8,12,2021,8,20,"C05.16b");
+    manager.addSession("SDJ1Z", 4, 9,12,2021,8,20,"C05.16a");
     manager.addSession("SDJ1DK", 4, 9,12,2021,8,20,"C03.12");
+    manager.addSession("SDJ1Y", 2, 8, 12, 2021, 13, 20, "C05.15");
+    manager.addSession("SEP1Y", 3, 9, 12, 2021, 14, 40, "C05.16b");
+
+   // System.out.println(manager.getSessionList());
+   /*
+    System.out.println(manager.getSessionListForTeacher("SVA"));
+    System.out.println("\nTeacher list - Done!\n");
+
+    System.out.println(manager.getSessionListForMainClass("1Z"));
+    System.out.println("\nClass list - Done!\n");
+
+    System.out.println(manager.getSessionListForStudent("667347"));
+    System.out.println("\nStudent list - Done!\n");
+
+    System.out.println(manager.getSessionList().getSession(5).getStartDateTime().getTime());
+    System.out.println( manager.getSessionList().getSession(5).getEndDateTime().getTime());
+
+
+    System.out.println(manager.getAvailableRooms(manager.getSessionList().getSession(4).getStartDateTime(), manager.getSessionList().getSession(4).getEndDateTime()));
+    System.out.println("\nAvailable Room list - Done!\n");
+*/
+
+   // manager.createSessionListXML();
+    //manager.createTeacherSessionListXML("SVA");
+    //manager.createClassSessionListXML("1Y");
+
+    //manager.createStudentSessionListXML("667347");
+
+    //manager.createSessionListForAllStudents();
+
+
   }
 }

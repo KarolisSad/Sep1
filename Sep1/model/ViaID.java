@@ -1,4 +1,4 @@
-/**
+package model; /**
  * An interface for controlling Student- and teacher IDs.
  *
  * @author Christian Hougaard Pedersen, Karolis and Justina

@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 
 public class TeacherList
@@ -47,6 +49,7 @@ public class TeacherList
   {
     return teacherList.get(index);
   }
+
 
   public boolean equals(Object obj)
   {
