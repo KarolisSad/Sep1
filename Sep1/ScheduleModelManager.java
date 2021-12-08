@@ -40,7 +40,8 @@ public class ScheduleModelManager
         return classList.getClassByIndex(i);
       }
     }
-    throw new IllegalArgumentException("Class not found.");
+    throw new IllegalArgumentException(
+        "Could not find class with name: " + className);
   }
 
   public Teacher getTeacherByID(String teacherID)
@@ -52,15 +53,28 @@ public class ScheduleModelManager
         return teacherList.getTeacher(i);
       }
     }
-    throw new IllegalArgumentException("Teacher not found");
+    throw new IllegalArgumentException(
+        "Could not find teacher with ID: " + teacherID);
+  }
+
+  public Student getStudentByID(String studentID)
+  {
+    for (int i = 0; i < studentList.size(); i++)
+    {
+      if (studentList.getStudent(i).getStudentId().equals(studentID))
+      {
+        return studentList.getStudent(i);
+      }
+    }
+    throw new IllegalArgumentException(
+        "Could not find student with ID: " + studentID);
   }
 
   public void addCourse(String name, int ECTS, String mainClass,
       String firstTeacherID)
   {
-    Class classToAdd = getClassByID(mainClass);
+    model.Class classToAdd = getClassByID(mainClass);
     Teacher teacherToAdd = getTeacherByID(firstTeacherID);
-
 
     for (int i = 0; i < courseList.getNumberOfCourses(); i++)
     {
@@ -127,6 +141,9 @@ public class ScheduleModelManager
           new Session(courseList.getCourseByName(courseName), sessionLength,
               sessionStartTime, roomList.getRoomByRoomNumber(roomNumber)));
     }
+
+    else
+      throw new IllegalArgumentException("Session not created");
   }
 
   public boolean isRoomAvailable(Room room, DateTime startTime,
@@ -147,16 +164,20 @@ public class ScheduleModelManager
             .isBefore(sessionList.getSession(i).getStartDateTime().getTime())))
         //if endtime is NOT before starttime of any session in list
         {
+          return false;
+          /*
           throw new IllegalArgumentException(
               "Room already in use for selected time. Room used by: "
                   + sessionList.getSession(i));
+
+           */
         }
       }
     }
     return true;
   }
 
-  public boolean isMainClassStudentsAvailable(Class mainClass,
+  public boolean isMainClassStudentsAvailable(model.Class mainClass,
       DateTime startTime, DateTime endTime)
   {
     for (int i = 0; i < sessionList.getNumberOfSessions(); i++)
@@ -185,7 +206,9 @@ public class ScheduleModelManager
     for (int i = 0; i < course.getCourseTeacherList().size(); i++)
     {
       for (int j = 0; j < sessionList.getNumberOfSessions(); j++)
-        if (sessionList.getSession(j).getCourse().getCourseTeacherList().contains(course.getCourseTeacherList().getTeacher(i)) && startTime.getDate()
+        if (sessionList.getSession(j).getCourse().getCourseTeacherList()
+            .contains(course.getCourseTeacherList().getTeacher(i))
+            && startTime.getDate()
             .equals(sessionList.getSession(j).getStartDateTime().getDate()))
         {
           if (startTime.getTime()
@@ -207,7 +230,7 @@ public class ScheduleModelManager
   {
     StudentList studentsNotInMainClass = new StudentList();
     if (course.getCourseStudentList()
-        .equals(course.getMainClass().cStudentList))
+        .equals(course.getMainClass().getClassStudentList()))
     {
       return true;
     }
@@ -217,8 +240,8 @@ public class ScheduleModelManager
       {
         for (int j = 0; j < course.getMainClass().getNumberOfStudents(); j++)
         {
-          if (!(course.getCourseStudentList().getStudent(i)
-              .equals(course.getMainClass().getStudentList().getStudent(j))))
+          if (!(course.getCourseStudentList().getStudent(i).equals(
+              course.getMainClass().getClassStudentList().getStudent(j))))
           {
             studentsNotInMainClass.addStudent(
                 course.getCourseStudentList().getStudent(i));
@@ -325,7 +348,6 @@ public class ScheduleModelManager
 
   }
 
-
   public RoomList getRoomsList()
   {
     return roomList;
@@ -355,4 +377,119 @@ public class ScheduleModelManager
   {
     return sessionList;
   }
-}
+
+  //////    Chr Testing - might be deleted    \\\\\\
+
+  // GetSessionListForXXX (Teacher, main class, Student) - for use in webpage
+
+  public SessionList getSessionListForTeacher(String teacherID)
+  {
+    SessionList teacherSessionList = new SessionList();
+    for (int i = 0; i < sessionList.getNumberOfSessions(); i++)
+    {
+      for (int j = 0;
+           j < sessionList.getSession(i).getCourse().getCourseTeacherList()
+               .size(); j++)
+        if (sessionList.getSession(i).getCourse().getCourseTeacherList()
+            .getTeacher(j).getTeacherId().equals(teacherID))
+        {
+          teacherSessionList.addSession(sessionList.getSession(i));
+        }
+    }
+    return teacherSessionList;
+  }
+
+  public SessionList getSessionListForMainClass(String className)
+  {
+    SessionList classSessionList = new SessionList();
+    for (int i = 0; i < sessionList.getNumberOfSessions(); i++)
+    {
+      if (sessionList.getSession(i).getCourse().getMainClass().getClassName()
+          .equals(className))
+      {
+        classSessionList.addSession(sessionList.getSession(i));
+      }
+    }
+
+    return classSessionList;
+  }
+
+  public SessionList getSessionListForStudent(String studentID)
+  {
+    SessionList studentSessionList = new SessionList();
+    for (int i = 0; i < sessionList.getNumberOfSessions(); i++)
+    {
+      for (int j = 0;
+           j < sessionList.getSession(i).getCourse().getCourseSize(); j++)
+      {
+        if (sessionList.getSession(i).getCourse().getCourseStudentList()
+            .getStudent(j).getStudentId().equals(studentID))
+        {
+          studentSessionList.addSession(sessionList.getSession(i));
+        }
+      }
+    }
+
+    return studentSessionList;
+
+  }
+
+  // XML file creation
+
+  public void createSessionListXML()
+  {
+    XMLParser.toXML(getSessionList(), "sessionlistFull.xml");
+  }
+
+  public void createStudentSessionListXML(String studentID)
+  {
+    if (studentList.contains(getStudentByID(studentID)))
+    {
+      XMLParser.toXML(getSessionListForStudent(studentID),
+          "sessionListStudent" + studentID + ".xml");
+    }
+  }
+
+  public void createTeacherSessionListXML(String teacherID)
+  {
+    if (teacherList.contains(getTeacherByID(teacherID)))
+    {
+      XMLParser.toXML(getSessionListForTeacher(teacherID),
+          "sessionListTeacher" + teacherID + ".xml");
+    }
+  }
+
+  public void createClassSessionListXML(String className)
+  {
+    if (classList.contains(getClassByID(className)))
+    {
+      XMLParser.toXML(getSessionListForMainClass(className),
+          "sessionListMainClass" + className + ".xml");
+    }
+  }
+
+
+  // this one is probably not that useful?? It makes a SessionList for each student at VIA (one .xml file for each student)
+  public void createSessionListForAllStudents()
+  {
+   for (int i = 0; i < studentList.size(); i++)
+   {
+     XMLParser.toXML(getSessionListForStudent(studentList.getStudent(i).getStudentId()), "sessionListStudent" + studentList.getStudent(i).getStudentId() + ".xml");
+   }
+  }
+
+  // Available rooms - roomlist, for creating a new session in GUI
+  public RoomList getAvailableRooms(DateTime startTime, DateTime endTime)
+  {
+    RoomList availableRooms = new RoomList();
+    for (int i = 0; i < roomList.getNumberOfRooms(); i++)
+    {
+      if (isRoomAvailable(roomList.getRoom(i), startTime, endTime))
+      {
+        availableRooms.addRoom(roomList.getRoom(i));
+      }
+    }
+
+    return availableRooms;
+
+  }
