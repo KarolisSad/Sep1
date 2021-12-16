@@ -133,6 +133,7 @@ public class CourseViewController
 
 @FXML private void removeStudent()
   {
+
     viewHandler.openView("removeStudentFromCourse");
   }
 

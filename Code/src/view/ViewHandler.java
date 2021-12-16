@@ -88,6 +88,7 @@ public class ViewHandler
         break;
       case "removeStudentFromCourse":
         root = removeStudentFromCourse("RemoveStudentFromCourse.fxml");
+        break;
       }
 
     currentScene.setRoot(root);
