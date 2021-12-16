@@ -6,7 +6,7 @@ public interface ScheduleModel
 {
   void addClass(String classID, int semester);
 
-  void getClassFirst();
+ // void getClassFirst();
 
   void addStudent(String name, int studentID, String classID, int semester);
 

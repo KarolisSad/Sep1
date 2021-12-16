@@ -53,7 +53,7 @@ public class AddClassViewController
     {
 
     model.addClass(name.getText(), Integer.parseInt(semester.getText()));
-    model.getClassFirst();
+    //model.getClassFirst();
     model.sortStudentsInClasses();
       error.setText("Successfully added!");
     }
