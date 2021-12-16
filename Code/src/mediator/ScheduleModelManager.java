@@ -656,7 +656,7 @@ public class ScheduleModelManager implements ScheduleModel
         for (int j = 0; j < courseList.getNumberOfCourses(); j++)
         {
           if (courseList.getCourse(j).getCourseName().equals(courseName)
-              && !(courseList.getCourse(j).getCourseStudentList()
+              && (courseList.getCourse(j).getCourseStudentList()
               .containsById(Integer.parseInt(studentID))))
           {
             courseList.getCourse(j)
