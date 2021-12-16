@@ -10,8 +10,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Class handling the import and export to and from external files
+ */
 public class ScheduleFile
 {
+  /**
+   * Static method importing students from a .txt file
+   * @return studentlist containing the students imported.
+   */
   public static StudentList importStudents()
   {
     File file = new File("Student.txt");
@@ -38,7 +45,10 @@ public class ScheduleFile
     return studentList;
 
   }
-
+  /**
+   * Static method importing classes from a .txt file
+   * @return classList containing the classes imported.
+   */
   public static ClassList importClasses()
   {
     File file = new File("Classes.txt");
@@ -63,7 +73,10 @@ public class ScheduleFile
     return classList;
 
   }
-
+  /**
+   * Static method importing teachers from a .txt file
+   * @return teacherList containing the teachers imported.
+   */
   public static TeacherList importTeachers()
   {
     File file = new File("Teachers.txt");
@@ -89,7 +102,10 @@ public class ScheduleFile
     return teacherList;
 
   }
-
+  /**
+   * Static method importing rooms from a .txt file
+   * @return roomList containing the rooms imported.
+   */
   public static RoomList importRooms()
   {
     File file = new File("Rooms.txt");
@@ -117,7 +133,10 @@ public class ScheduleFile
     return roomList;
 
   }
-
+  /**
+   * Static method importing courses from a .txt file
+   * @return courseList containing the courses imported.
+   */
   public static CourseList importCourses()
   {
     File file = new File("Courses.txt");
@@ -150,6 +169,10 @@ public class ScheduleFile
 
   }
 
+  /**
+   * Static method importing sessions from a .txt file
+   * @return SessionList containing the sessions imported.
+   */
   public static SessionList importSessions()
   {
     File file = new File("sessions.txt");
@@ -187,7 +210,10 @@ public class ScheduleFile
     }
     return sessionList ;
   }
-
+  /**
+   * Static method exporting a SessionList to .XML
+   * @return .XML file containing the SessionList with all information: Course, Students, Teacher etc..
+   */
   public static void toXML(Object obj, String filename)
   {
     XmlJsonParser xmlparser = new XmlJsonParser();

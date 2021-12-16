@@ -40,6 +40,10 @@ public class Teacher
     return teacherID.getIdAsString();
   }
 
+  /**
+   * Method for getting a teachers name
+   * @return String containing teachers name
+   */
   public String getName()
   {
     return teacherName;

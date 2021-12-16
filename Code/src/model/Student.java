@@ -104,22 +104,34 @@ public class Student
     return className;
   }
 
+  /**
+   * Method for getting a students name
+   * @return String holding students name
+   */
   public String getName()
   {
     return studentName;
   }
 
+  /**
+   * Method for getting the class ID assigned to a student
+   * @return String holding students class ID
+   */
   public String getClassID()
   {
     return classID;
   }
 
+  /**
+   * Method for getting the semester assigned to a student
+   * @return String holding students semester
+   */
   public int getSemester()
   {
     return semester;
   }
 
-  // TESTING
+
   /**
    * method is meant to print out student information in a presentable way.
    * @return student infomation (Name of the student and ID).

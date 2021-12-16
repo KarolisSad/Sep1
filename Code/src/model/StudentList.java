@@ -113,7 +113,6 @@ public class StudentList
     return studentList.contains(student);
   }
 
-  // TESTING
   /**
    * method is meant to make a presentable list of students.
    * In the method, it's looped through an array list and one by one each item is added to a new created string variable s.
@@ -129,7 +128,11 @@ public class StudentList
     return s;
   }
 
-
+  /**
+   * Boolean method for checking if the list contains a student with a specific ID.
+   * @param id - The student ID of the student to look for
+   * @return true if student is found - false if not.
+   */
   public boolean containsById(int id)
   {
     for (int i = 0;i< studentList.size();i++)

@@ -26,8 +26,6 @@ public class SessionList
     sessionList.add(session);
   }
 
-  // do we need it?
-
   /**
    * method is meant for removing a session from the session array list by index.
    * @param index position of the specified session.
@@ -36,9 +34,12 @@ public class SessionList
   {
     sessionList.remove(index);
   }
-  // do we need it?
 
-
+  /**
+   * Method for removing a specific session
+   *
+   * @param session - session to be removed
+   */
   public void removeSession(Session session)
   {
     if (sessionList.contains(session))

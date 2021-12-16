@@ -85,7 +85,12 @@ public class Course
   {
     return courseName;
   }
-
+  /**
+   * method intended to get the short version of a courses name
+   * EX: SDJ, DMA, RWD, SEP.
+   *
+   * @return short version of course name of a specified course.
+   */
   public String getCourseNameShort()
   {
     return courseNameShort;
