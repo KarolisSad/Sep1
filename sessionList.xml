@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SessionList>
+  <sessionList>
+    <course>
+      <courseNameShort>SDJ</courseNameShort>
+      <courseName>SDJ1X</courseName>
+      <mainClass>
+        <classID>X</classID>
+        <classStudentList/>
+        <className>1X</className>
+        <semester>1</semester>
+      </mainClass>
+      <courseTeacherList>
+        <teacherList>
+          <teacherID>
+            <teacherId>SVA</teacherId>
+          </teacherID>
+          <teacherName>Steffen Vissing Andersen</teacherName>
+        </teacherList>
+      </courseTeacherList>
+      <ectsPoints>10</ectsPoints>
+      <courseStudentList/>
+    </course>
+    <startTime>
+      <date>
+        <month>12</month>
+        <dayName>FRIDAY</dayName>
+        <year>2021</year>
+        <day>17</day>
+      </date>
+      <time>
+        <hour>8</hour>
+        <minute>20</minute>
+      </time>
+    </startTime>
+    <endTime>
+      <date>
+        <month>12</month>
+        <dayName>FRIDAY</dayName>
+        <year>2021</year>
+        <day>17</day>
+      </date>
+      <time>
+        <hour>9</hour>
+        <minute>55</minute>
+      </time>
+    </endTime>
+    <sessionLength>2</sessionLength>
+    <room>
+      <roomNumber>C05.15</roomNumber>
+      <capacity>45</capacity>
+    </room>
+  </sessionList>
+</SessionList>
