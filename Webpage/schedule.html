@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - VIA University College</title>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="css/css.css" type="text/css" rel="stylesheet" />
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <!-- Header Start -->
+
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow p-3 mb-5">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="images/vialogo.png" height="55px" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fs-5">
+
+                    <li class="nav-item dropdown px-3">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Courses
+                        </a>
+                        <ul class="dropdown-menu border-black" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="SDJ.html">SDJ1</a></li>
+                            <li><a class="dropdown-item" href="RWD.html">RWD1</a></li>
+                            <li><a class="dropdown-item" href="DMA.html">DMA1</a></li>
+                            <li><a class="dropdown-item" href="SEP.html">SEP1</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="schedule.html">Schedule</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="contact.html">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End of Header -->
+
+    <!-- Screensize large or bigger-->
+
+
+
+    <!-- Table Big -->
+    <div class="container d-none d-lg-block w-100">
+
+        <div class="row">
+
+            <div class="col">
+                <!-- Opens DatePicker - from jquery-UI labrary. -->
+                <input type="button" class="btn btn-primary rounded-3 datePicker me-1" value="Choose Week">
+            </div>
+            <div class="col dropdown">
+                <!-- Button to open input menu for student- or teacher-id. Opens a dropdown, and each option opens a modal (pop-up box) -->
+                <button type="button" class="btn btn-secondary dropdown-toggle rounded-3 pe-1 ms-4"
+                    data-bs-toggle="dropdown">Input ID</button>
+                <ul class="dropdown-menu">
+                    <li><button type="button" class="dropdown-item btn" data-bs-toggle="modal"
+                            data-bs-target="#studentInputModal">Student</button></li>
+                    <li><button type="button" class="dropdown-item btn" data-bs-toggle="modal"
+                            data-bs-target="#teacherInputModal">Teacher</button></li>
+                </ul>
+            </div>
+
+
+            <div class="col-8 justify-content-center">
+                <h3 class="datesField">Please choose a week to show schedule</h3>
+            </div>
+
+        </div>
+        <table class="table table-secondary table-bordered mb-5">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <p class="showCurrentField"></p>
+                    </th>
+                    <th scope="col" class="monDate">Monday</th>
+                    <th scope="col" class="tueDate">Tuesday</th>
+                    <th scope="col" class="wedDate">Wednesday</th>
+                    <th scope="col" class="thuDate">Thursday</th>
+                    <th scope="col" class="friDate">Friday</th>
+                </tr>
+            </thead>
+            <tbody class="tableBody">
+                <tr>
+                    <th scope="row">8:20</th>
+                    <td class="mon1"></td>
+                    <td class="tue1"></td>
+                    <td class="wed1"></td>
+                    <td class="thu1"></td>
+                    <td class="fri1"></td>
+                </tr>
+                <tr>
+                    <th scope="row">9:10</th>
+                    <td class="session2 MONDAY" class="mon2"></td>
+                    <td class="session2 TUESDAY" class="tue2"></td>
+                    <td class="session2 WEDNESDAY" class="wed2"></td>
+                    <td class="session2 THURSDAY" class="thu2"></td>
+                    <td class="session2 FRIDAY" class="fri2"></td>
+                </tr>
+                <tr>
+                    <th scope="row">10:15</th>
+                    <td class="session3 MONDAY" class="mon3"></td>
+                    <td class="session3 TUESDAY" class="tue3"></td>
+                    <td class="session3 WEDNESDAY" class="wed3"></td>
+                    <td class="session3 THURSDAY" class="thu3"></td>
+                    <td class="session3 FRIDAY" class="fri3"></td>
+                </tr>
+                <tr>
+                    <th scope="row">11:00</th>
+                    <td class="session4 MONDAY" class="mon4"></td>
+                    <td class="session4 TUESDAY" class="tue4"></td>
+                    <td class="session4 WEDNESDAY" class="wed4"></td>
+                    <td class="session4 THURSDAY" class="thu4"></td>
+                    <td class="session4 FRIDAY" class="fri4"></td>
+                </tr>
+                <tr>
+                    <th scope="row">11:50 - Break</th>
+                    <td class="bg-secondary"></td>
+                    <td class="bg-secondary"></td>
+                    <td class="bg-secondary"></td>
+                    <td class="bg-secondary"></td>
+                    <td class="bg-secondary"></td>
+                </tr>
+                <tr>
+                    <th scope="row">12:45</th>
+                    <td class="mon5"></td>
+                    <td class="tue5"></td>
+                    <td class="wed5"></td>
+                    <td class="thu5"></td>
+                    <td class="fri5"></td>
+                </tr>
+                <tr>
+                    <th scope="row">13:30</th>
+                    <td class="mon6"></td>
+                    <td class="tue6"></td>
+                    <td class="wed6"></td>
+                    <td class="thu6"></td>
+                    <td class="fri6"></td>
+                </tr>
+                <tr>
+                    <th scope="row">14:20</th>
+                    <td class="mon7"></td>
+                    <td class="tue7"></td>
+                    <td class="wed7"></td>
+                    <td class="thu7"></td>
+                    <td class="fri7"></td>
+                </tr>
+                <tr>
+                    <th scope="row">15:05</th>
+                    <td class="mon8"></td>
+                    <td class="tue8"></td>
+                    <td class="wed8"></td>
+                    <td class="thu8"></td>
+                    <td class="fri8"></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+    <!-- Screen size smaller than large -->
+    <div class="container d-lg-none">
+        <div class="div pb-5">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <!-- Button to open DatePicker - from jquery-UI library -->
+                    <input type="button" class="datePicker btn btn-primary rounded-3" value="Choose Week">
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <!-- Button to open input menu for student- or teacher-id. Each option opens a modal (pop-up box) -->
+                    <button type="button" class="btn btn-secondary rounded-3" data-bs-toggle="modal"
+                        data-bs-target="#studentInputModal">Student</button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary rounded-3" data-bs-toggle="modal"
+                        data-bs-target="#teacherInputModal">Teacher</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                <h3 class="datesField">4 October - 10 October 2021</h3>
+            </div>
+        </div>
+        <!-- TABLE SMALL -->
+        <!--    Monday    -->
+        <table class="table table-secondary table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="thF">
+                        <p class="showCurrentField"></p>
+                    </th>
+                    <th scope="col" class="monDate">Monday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="thF">8:20</th>
+                    <td class="mon1"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">9:10</th>
+                    <td class="mon2"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">10:15</th>
+                    <td class="mon3"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:00</th>
+                    <td class="mon4"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:50</th>
+                    <td class="bg-secondary"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">12:45</th>
+                    <td class="mon5"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">13:30</th>
+                    <td class="mon6"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">14:20</th>
+                    <td class="mon7"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">15:05</th>
+                    <td class="mon8"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--    Tuesday    -->
+        <table class="table table-secondary table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="thF">
+                        <p class="showCurrentField"></p>
+                    </th>
+                    <th scope="col" class="tueDate">Tuesday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="thF">8:20</th>
+                    <td class="tue1"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">9:10</th>
+                    <td class="tue2"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">10:15</th>
+                    <td class="tue3"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:00</th>
+                    <td class="tue4"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:50</th>
+                    <td class="bg-secondary"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">12:45</th>
+                    <td class="tue5"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">13:30</th>
+                    <td class="tue6"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">14:20</th>
+                    <td class="tue7"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">15:05</th>
+                    <td class="tue8"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--    Wednesday    -->
+        <table class="table table-secondary table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="thF">
+                        <p class="showCurrentField"></p>
+                    </th>
+                    <th scope="col" class="wedDate">Wednesday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="thF">8:20</th>
+                    <td class="wed1"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">9:10</th>
+                    <td class="wed2"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">10:15</th>
+                    <td class="wed3"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:00</th>
+                    <td class="wed4"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:50</th>
+                    <td class="bg-secondary"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">12:45</th>
+                    <td class="wed5"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">13:30</th>
+                    <td class="wed6"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">14:20</th>
+                    <td class="wed7"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">15:05</th>
+                    <td class="wed8"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--    Thursday    -->
+        <table class="table table-secondary table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="thF">
+                        <p class="showCurrentField"></p>
+                    </th>
+                    <th scope="col" class="thuDate">Thursday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="thF">8:20</th>
+                    <td class="thu1"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">9:10</th>
+                    <td class="thu2"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">10:15</th>
+                    <td class="thu3"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:00</th>
+                    <td class="thu4"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:50</th>
+                    <td class="bg-secondary"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">12:45</th>
+                    <td class="thu5"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">13:30</th>
+                    <td class="thu6"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">14:20</th>
+                    <td class="thu7"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">15:05</th>
+                    <td class="thu8"></td>
+                </tr>
+            </tbody>
+        </table>
+        <!--    Friday    -->
+        <table class="table table-secondary table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="thF">
+                        <p class="showCurrentField"></p>
+                    </th>
+                    <th scope="col" class="friDate">Friday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="thF">8:20</th>
+                    <td class="fri1"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">9:10</th>
+                    <td class="fri2"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">10:15</th>
+                    <td class="fri3"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:00</th>
+                    <td class="fri4"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">11:50</th>
+                    <td class="bg-secondary"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">12:45</th>
+                    <td class="fri5"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">13:30</th>
+                    <td class="fri6"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">14:20</th>
+                    <td class="fri7"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="thF">15:05</th>
+                    <td class="fri8"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Modal (Popups) -->
+    <div>
+        <!-- POP UP (MODAL) For studentID input -->
+        <div class="modal" id="studentInputModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Please input your Student ID:</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- MODAL BODY -->
+                    <div class="modal-body">
+                        <input type="text" class="form-control" id="studentIDField" placeholder="Student ID">
+                    </div>
+
+                    <!-- MODAL FOOTER -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="studentModalConfirm"
+                            data-bs-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- POP UP (MODAL) For teacherID input -->
+        <div class="modal" id="teacherInputModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Please input your Teacher ID:</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- MODAL BODY -->
+                    <div class="modal-body">
+                        <input oninput="this.value = this.value.toUpperCase()" type="text" class="form-control"
+                            id="teacherIDField" placeholder="Teacher ID">
+                        <!-- oninput="this.value = this.value.toUpperCase()" makes text be automatically input (and sent) as uppercase -->
+                    </div>
+
+                    <!-- MODAL FOOTER -->
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" id="teacherModalConfirm"
+                            data-bs-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+
+    <footer class="bg-secondary p-4">
+        <section class="justify-content-between">
+            <div class="row text-center">
+                <div class="col-sm-4">
+                    <h2>Contact</h2>
+                    <ul class="list-unstyled text-dark">
+                        <li><a href="https://en.via.dk/about-via" class="text-dark">About</a></li>
+                        <li><a href="https://en.via.dk/about-via/contact" class="text-dark">Contact Via</a></li>
+                        <li><a href="https://en.via.dk/about-via/cookie-policy" class="text-dark">Cookie Policy</a>
+                        </li>
+                        <li><a href="https://en.via.dk/about-via/privacy-policy" class="text-dark">Privacy
+                                Policy</a>
+                        </li>
+                        <li><a href="https://en.via.dk/global-partnerships/contact-global-engagement"
+                                class="text-dark">International affairs</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <h2>Contact</h2>
+                    <ul class="list-unstyled text-dark">
+                        <li><a href="https://en.via.dk/about-via" class="text-dark">About</a></li>
+                        <li><a href="https://en.via.dk/about-via/contact" class="text-dark">Contact Via</a></li>
+                        <li><a href="https://en.via.dk/about-via/cookie-policy" class="text-dark">Cookie Policy</a>
+                        </li>
+                        <li><a href="https://en.via.dk/about-via/privacy-policy" class="text-dark">Privacy
+                                Policy</a>
+                        </li>
+                        <li><a href="https://en.via.dk/global-partnerships/contact-global-engagement"
+                                class="text-dark">International affairs</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="col-sm-4">
+                    <h2>Come meet us</h2>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://www.facebook.com/VIASoftwareEng" class="text-dark m-1">
+                            <h2><i class="bi bi-facebook"></h2></i>
+                        </a>
+                        <a href="https://www.instagram.com/viauniversitycollege/" class="text-dark m-1">
+                            <h2><i class="bi bi-instagram"></h2></i>
+                        </a>
+                        <a href="https://www.linkedin.com/school/via-university-college/" class="text-dark m-1">
+                            <h2><i class="bi bi-linkedin"></h2></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="copy text-dark text-center m-3">
+            <p>&copy; 2021 Copyright: Group 8</p>
+        </div>
+    </footer>
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
