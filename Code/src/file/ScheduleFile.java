@@ -17,7 +17,7 @@ public class ScheduleFile
 
   public static StudentList importStudents()
     {
-      File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\student.txt");
+      File file = new File("student.txt");
       StudentList studentList = new StudentList();
       try
       {
@@ -43,7 +43,7 @@ public class ScheduleFile
 
   public static ClassList importClasses()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\classes.txt");
+    File file = new File("classes.txt");
     ClassList classList = new ClassList();
     try
     {
@@ -68,7 +68,7 @@ public class ScheduleFile
 
   public static TeacherList importTeachers()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\teachers.txt");
+    File file = new File("teachers.txt");
     TeacherList teacherList = new TeacherList();
     try
     {
@@ -94,7 +94,7 @@ public class ScheduleFile
 
   public static RoomList importRooms()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\rooms.txt");
+    File file = new File("rooms.txt");
     RoomList roomList = new RoomList();
     try
     {
@@ -121,7 +121,7 @@ public class ScheduleFile
 
   public static CourseList importCourses()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\courses.txt");
+    File file = new File("courses.txt");
     CourseList courseList = new CourseList();
     try
     {
@@ -150,7 +150,7 @@ public class ScheduleFile
 
   public static SessionList importSessions()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\sessions.txt");
+    File file = new File("sessions.txt");
     SessionList sessionList = new SessionList();
     try
     {

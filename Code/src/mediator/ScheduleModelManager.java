@@ -636,7 +636,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportClass()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\classes.txt");
+    File file = new File("classes.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -661,7 +661,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportStudents()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\student.txt");
+    File file = new File("student.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -690,7 +690,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportRooms()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\rooms.txt");
+    File file = new File("rooms.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -716,7 +716,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportTeachers()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\teachers.txt");
+    File file = new File("teachers.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -742,7 +742,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportCourses()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\courses.txt");
+    File file = new File("courses.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -773,7 +773,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportSessions()
   {
-    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\sessions.txt");
+    File file = new File("sessions.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
