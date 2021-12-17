@@ -67,6 +67,7 @@ public class MainViewController
 
   @FXML private void export()
   {
+    model.createSessionListXML();
     model.exportAll();
 
   };

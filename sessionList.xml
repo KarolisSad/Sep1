@@ -2,31 +2,85 @@
 <SessionList>
   <sessionList>
     <course>
-      <courseNameShort>SDJ</courseNameShort>
       <courseName>SDJ1X</courseName>
       <mainClass>
         <classID>X</classID>
-        <classStudentList/>
         <className>1X</className>
         <semester>1</semester>
+        <cStudentList>
+          <studentList>
+            <studentID>
+              <studentId>315224</studentId>
+            </studentID>
+            <classID>X</classID>
+            <name>Tom Martin</name>
+            <className>1X</className>
+            <semester>1</semester>
+          </studentList>
+          <studentList>
+            <studentID>
+              <studentId>315215</studentId>
+            </studentID>
+            <classID>X</classID>
+            <name>John First</name>
+            <className>1X</className>
+            <semester>1</semester>
+          </studentList>
+          <studentList>
+            <studentID>
+              <studentId>1002</studentId>
+            </studentID>
+            <classID>X</classID>
+            <name>Abraham Jackson</name>
+            <className>1X</className>
+            <semester>1</semester>
+          </studentList>
+        </cStudentList>
       </mainClass>
       <courseTeacherList>
         <teacherList>
           <teacherID>
-            <teacherId>SVA</teacherId>
+            <teacherID>RIB</teacherID>
           </teacherID>
-          <teacherName>Steffen Vissing Andersen</teacherName>
+          <name>RIB</name>
         </teacherList>
       </courseTeacherList>
-      <ectsPoints>10</ectsPoints>
-      <courseStudentList/>
+      <ectsPoints>5</ectsPoints>
+      <courseStudentList>
+        <studentList>
+          <studentID>
+            <studentId>315224</studentId>
+          </studentID>
+          <classID>X</classID>
+          <name>Tom Martin</name>
+          <className>1X</className>
+          <semester>1</semester>
+        </studentList>
+        <studentList>
+          <studentID>
+            <studentId>315215</studentId>
+          </studentID>
+          <classID>X</classID>
+          <name>John First</name>
+          <className>1X</className>
+          <semester>1</semester>
+        </studentList>
+        <studentList>
+          <studentID>
+            <studentId>1002</studentId>
+          </studentID>
+          <classID>X</classID>
+          <name>Abraham Jackson</name>
+          <className>1X</className>
+          <semester>1</semester>
+        </studentList>
+      </courseStudentList>
     </course>
     <startTime>
       <date>
         <month>12</month>
-        <dayName>FRIDAY</dayName>
         <year>2021</year>
-        <day>17</day>
+        <day>22</day>
       </date>
       <time>
         <hour>8</hour>
@@ -36,18 +90,17 @@
     <endTime>
       <date>
         <month>12</month>
-        <dayName>FRIDAY</dayName>
         <year>2021</year>
-        <day>17</day>
+        <day>22</day>
       </date>
       <time>
-        <hour>9</hour>
-        <minute>55</minute>
+        <hour>10</hour>
+        <minute>20</minute>
       </time>
     </endTime>
     <sessionLength>2</sessionLength>
     <room>
-      <roomNumber>C05.15</roomNumber>
+      <roomNumber>C05.16a</roomNumber>
       <capacity>45</capacity>
     </room>
   </sessionList>

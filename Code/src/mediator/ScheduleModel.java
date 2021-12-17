@@ -70,5 +70,12 @@ public interface ScheduleModel
 
   public void exportAll();
 
+  /**
+   * exporting sessions to an XML file.
+   */
+  void createSessionListXML();
+
+
+
 
 }

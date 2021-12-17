@@ -1,8 +1,7 @@
 package mediator;
 
 import model.*;
-import mediator.ScheduleFile;
-import model.Class;
+import file.ScheduleFile;
 import model.Class;
 
 import java.io.File;
@@ -637,7 +636,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportClass()
   {
-    File file = new File("Imports/classes.txt");
+    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\classes.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -662,7 +661,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportStudents()
   {
-    File file = new File("Imports/student.txt");
+    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\student.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -691,7 +690,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportRooms()
   {
-    File file = new File("Imports/rooms.txt");
+    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\rooms.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -717,7 +716,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportTeachers()
   {
-    File file = new File("Imports/teachers.txt");
+    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\teachers.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -743,7 +742,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportCourses()
   {
-    File file = new File("Imports/courses.txt");
+    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\courses.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -774,7 +773,7 @@ public class ScheduleModelManager implements ScheduleModel
 
   public void exportSessions()
   {
-    File file = new File("Imports/sessions.txt");
+    File file = new File("C:\\Users\\jeghe\\Desktop\\SemesterProject\\SemesterP\\Code\\src\\Imports\\sessions.txt");
     try
     {
       PrintWriter out = new PrintWriter(file);
@@ -822,6 +821,15 @@ public class ScheduleModelManager implements ScheduleModel
       System.out.println(file.getAbsolutePath());
     }
   }
+
+  /**
+   * exporting sessions to an XML file.
+   */
+  @Override public void createSessionListXML()
+  {
+    ScheduleFile.toXML(getSessionList(), "sessionList.xml");
+  }
+
 
 
 
